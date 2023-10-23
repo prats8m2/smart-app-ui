@@ -18,3 +18,11 @@ export const SITE = {
   UPDATE_SITE: '/site/update',
   DELETE_SITE: '/site/delete/',
 };
+
+export const ROLE = {
+  LIST_ROLE: '/role/list',
+};
+
+export const STAFF = {
+  LIST_STAFF: '/staff/list',
+};

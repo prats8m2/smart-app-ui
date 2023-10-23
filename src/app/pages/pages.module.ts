@@ -44,6 +44,8 @@ import { ChatComponent } from './chat/chat.component';
 
 import { FilemanagerComponent } from './filemanager/filemanager.component';
 import { SiteModule } from './site/site.module';
+import { RoleModule } from './role/role/role.module';
+import { StaffModule } from './staff/staff.module';
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -64,6 +66,8 @@ FullCalendarModule.registerPlugins([
     ReactiveFormsModule,
     UsersModule,
     SiteModule,
+    StaffModule,
+    RoleModule,
     CryptoModule,
     EcommerceModule,
     EmailModule,
