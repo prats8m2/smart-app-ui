@@ -8,9 +8,8 @@ describe('RepeaterComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ RepeaterComponent ]
-    })
-    .compileComponents();
+      declarations: [RepeaterComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

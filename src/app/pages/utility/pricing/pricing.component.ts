@@ -7,7 +7,7 @@ import { pricingData } from './data';
 @Component({
   selector: 'app-pricing',
   templateUrl: './pricing.component.html',
-  styleUrls: ['./pricing.component.scss']
+  styleUrls: ['./pricing.component.scss'],
 })
 
 /**
@@ -19,10 +19,13 @@ export class PricingComponent implements OnInit {
 
   pricingData: Pricing[];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Utility' }, { label: 'Pricing', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Utility' },
+      { label: 'Pricing', active: true },
+    ];
 
     this.pricingData = pricingData;
   }

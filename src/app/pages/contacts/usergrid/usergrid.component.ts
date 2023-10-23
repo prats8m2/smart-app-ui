@@ -9,7 +9,7 @@ import { userGridData } from './data';
 @Component({
   selector: 'app-usergrid',
   templateUrl: './usergrid.component.html',
-  styleUrls: ['./usergrid.component.scss']
+  styleUrls: ['./usergrid.component.scss'],
 })
 
 /**
@@ -26,16 +26,30 @@ export class UsergridComponent implements OnInit {
   items: FormArray;
   // Select2 Dropdown
   selectValue: string[];
-  constructor(private modalService: NgbModal, private formBuilder: FormBuilder) { }
+  constructor(
+    private modalService: NgbModal,
+    private formBuilder: FormBuilder,
+  ) {}
 
   ngOnInit() {
-    this.selectValue = ['Photoshop', 'illustrator', 'Html', 'Css', 'Php', 'Java', 'Python'];
+    this.selectValue = [
+      'Photoshop',
+      'illustrator',
+      'Html',
+      'Css',
+      'Php',
+      'Java',
+      'Python',
+    ];
 
-    this.breadCrumbItems = [{ label: 'Contacts' }, { label: 'Users Grid', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Contacts' },
+      { label: 'Users Grid', active: true },
+    ];
     this.userForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required]],
-      designation: ['', [Validators.required]]
+      designation: ['', [Validators.required]],
     });
     /**
      * fetches data
@@ -70,15 +84,15 @@ export class UsergridComponent implements OnInit {
       const name = this.userForm.get('name').value;
       const email = this.userForm.get('email').value;
       const designation = this.userForm.get('designation').value;
-       this.userGridData.push({
-         id: this.userGridData.length + 1,
-         name,
-         email,
-         designation,
-         projects: this.selected
-       })
-       this.modalService.dismissAll()
+      this.userGridData.push({
+        id: this.userGridData.length + 1,
+        name,
+        email,
+        designation,
+        projects: this.selected,
+      });
+      this.modalService.dismissAll();
     }
-    this.submitted = true
+    this.submitted = true;
   }
 }

@@ -8,9 +8,8 @@ describe('ExchangeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExchangeComponent ]
-    })
-    .compileComponents();
+      declarations: [ExchangeComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

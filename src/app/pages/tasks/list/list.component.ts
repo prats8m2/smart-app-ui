@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { taskChart, tasks } from './data';
@@ -9,14 +14,13 @@ import { ChartType, Tasklist } from './list.model';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  styleUrls: ['./list.component.scss'],
 })
 
 /**
  * Tasks-list component
  */
 export class ListComponent implements OnInit {
-
   // bread crumb items
   breadCrumbItems: Array<{}>;
 
@@ -30,16 +34,22 @@ export class ListComponent implements OnInit {
   completedTasks: Tasklist[];
   myFiles = [];
 
-  constructor(private modalService: NgbModal, private formBuilder: FormBuilder) { }
+  constructor(
+    private modalService: NgbModal,
+    private formBuilder: FormBuilder,
+  ) {}
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Tasks' }, { label: 'Task List', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Tasks' },
+      { label: 'Task List', active: true },
+    ];
 
     this.formData = this.formBuilder.group({
       name: ['', [Validators.required]],
       file: new FormControl('', [Validators.required]),
       taskType: ['', [Validators.required]],
-      status: ['', [Validators.required]]
+      status: ['', [Validators.required]],
     });
 
     this._fetchData();
@@ -60,7 +70,6 @@ export class ListComponent implements OnInit {
     this.taskChart = taskChart;
   }
 
-
   get form() {
     return this.formData.controls;
   }
@@ -76,10 +85,10 @@ export class ListComponent implements OnInit {
         status,
         taskType,
         images: this.myFiles,
-        checked: true
-      })
+        checked: true,
+      });
     }
-    this.modalService.dismissAll()
+    this.modalService.dismissAll();
     this._fetchData();
     this.submitted = false;
   }

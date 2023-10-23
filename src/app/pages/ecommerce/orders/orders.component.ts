@@ -3,24 +3,26 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.scss']
+  styleUrls: ['./orders.component.scss'],
 })
 
 /**
  * Ecommerce orders component
  */
 export class OrdersComponent implements OnInit {
-
   // bread crumb items
   breadCrumbItems: Array<{}>;
   term: any;
 
   transactions;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Ecommerce' }, { label: 'Orders', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Ecommerce' },
+      { label: 'Orders', active: true },
+    ];
 
     this.transactions = [
       {

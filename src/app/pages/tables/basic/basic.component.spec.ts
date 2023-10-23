@@ -8,9 +8,8 @@ describe('BasicComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ BasicComponent ]
-    })
-    .compileComponents();
+      declarations: [BasicComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

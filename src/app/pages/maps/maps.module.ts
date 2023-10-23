@@ -15,8 +15,8 @@ import { GoogleComponent } from './google/google.component';
     MapsRoutingModule,
     UIModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAbvyBxmMbFhrzP9Z8moyYr6dCr-pzjhBE'
+      apiKey: 'AIzaSyAbvyBxmMbFhrzP9Z8moyYr6dCr-pzjhBE',
     }),
-  ]
+  ],
 })
-export class MapsModule { }
+export class MapsModule {}

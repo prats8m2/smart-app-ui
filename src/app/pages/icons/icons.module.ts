@@ -10,11 +10,12 @@ import { DripiconsComponent } from './dripicons/dripicons.component';
 import { FontawesomeComponent } from './fontawesome/fontawesome.component';
 
 @NgModule({
-  declarations: [BoxiconsComponent, MaterialdesignComponent, DripiconsComponent, FontawesomeComponent],
-  imports: [
-    CommonModule,
-    IconsRoutingModule,
-    UIModule
-  ]
+  declarations: [
+    BoxiconsComponent,
+    MaterialdesignComponent,
+    DripiconsComponent,
+    FontawesomeComponent,
+  ],
+  imports: [CommonModule, IconsRoutingModule, UIModule],
 })
-export class IconsModule { }
+export class IconsModule {}

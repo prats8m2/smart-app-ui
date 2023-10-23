@@ -1,0 +1,99 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div
+        class="page-title-box d-flex align-items-center justify-content-between"
+      >
+        <h4 class="mb-0 font-size-18">Sites</h4>
+        <div class="page-title-right">
+          <div class="col-md-12 d-flex justify-content-end">
+            <input
+              type="button"
+              class="btn btn-success mt-3 mt-lg-0 ml-auto"
+              value="Add Site"
+              (click)="routeToAddSite()"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card user-table-card">
+          <div class="card-body">
+            <h4 class="card-title">List of Site(s)</h4>
+
+            <div class="table-responsive user-table">
+              <table class="table mb-0">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Address</th>
+                    <th>Account Name</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngIf="sitesList.length == 0">
+                    <td colspan="6">
+                      <p class="card-title-desc">No Records Found</p>
+                    </td>
+                  </tr>
+                  <tr *ngFor="let site of sitesList; let i = index">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td (click)="viewSite(site.id)" class="show-cursor">
+                      {{ site.name }}
+                    </td>
+                    <td>
+                      {{
+                        site.type === 1
+                          ? 'Hotel'
+                          : site.type === 2
+                          ? 'Restaurant'
+                          : 'Unknown'
+                      }}
+                    </td>
+                    <td>{{ site.address }}</td>
+                    <td>{{ site.account.name }}</td>
+                    <td>
+                      <div ngbDropdown placement="bottom-left">
+                        <i
+                          class="mdi mdi-dots-vertical dropdown-toggle show-cursor"
+                          ngbDropdownToggle
+                          data-toggle="dropdown"
+                          aria-expanded="true"
+                        ></i>
+                        <div
+                          class="dropdown-menu dropdown-menu-end"
+                          ngbDropdownMenu
+                        >
+                          <a
+                            class="dropdown-item"
+                            href="javascript: void(0);"
+                            (click)="editSite(site.id)"
+                            ><i class="mdi mdi-account-edit"></i> Edit</a
+                          >
+
+                          <a
+                            class="dropdown-item"
+                            href="javascript: void(0);"
+                            (click)="deleteSite(site.id)"
+                            ><i class="mdi mdi-delete"></i> Delete</a
+                          >
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

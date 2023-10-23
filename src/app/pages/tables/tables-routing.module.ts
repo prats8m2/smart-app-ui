@@ -5,18 +5,18 @@ import { BasicComponent } from './basic/basic.component';
 import { AdvancedtableComponent } from './advancedtable/advancedtable.component';
 
 const routes: Routes = [
-    {
-        path: 'basic',
-        component: BasicComponent
-    },
-    {
-        path: 'advanced',
-        component: AdvancedtableComponent
-    }
+  {
+    path: 'basic',
+    component: BasicComponent,
+  },
+  {
+    path: 'advanced',
+    component: AdvancedtableComponent,
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class TablesRoutingModule { }
+export class TablesRoutingModule {}

@@ -8,7 +8,12 @@ import { WidgetModule } from '../../shared/widget/widget.module';
 
 import { Ng5SliderModule } from 'ng5-slider';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { NgbNavModule, NgbDropdownModule, NgbPaginationModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbNavModule,
+  NgbDropdownModule,
+  NgbPaginationModule,
+  NgbModalModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
@@ -31,7 +36,16 @@ const config: DropzoneConfigInterface = {
 
 @NgModule({
   // tslint:disable-next-line: max-line-length
-  declarations: [ProductsComponent, ProductdetailComponent, ShopsComponent, CheckoutComponent, CartComponent, AddproductComponent, CustomersComponent, OrdersComponent],
+  declarations: [
+    ProductsComponent,
+    ProductdetailComponent,
+    ShopsComponent,
+    CheckoutComponent,
+    CartComponent,
+    AddproductComponent,
+    CustomersComponent,
+    OrdersComponent,
+  ],
   imports: [
     CommonModule,
     EcommerceRoutingModule,
@@ -46,13 +60,13 @@ const config: DropzoneConfigInterface = {
     WidgetModule,
     Ng5SliderModule,
     NgSelectModule,
-    NgbPaginationModule
+    NgbPaginationModule,
   ],
   providers: [
     {
       provide: DROPZONE_CONFIG,
-      useValue: config
-    }
-  ]
+      useValue: config,
+    },
+  ],
 })
-export class EcommerceModule { }
+export class EcommerceModule {}

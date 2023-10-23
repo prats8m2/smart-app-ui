@@ -8,9 +8,8 @@ describe('CyptolandingComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CyptolandingComponent ]
-    })
-    .compileComponents();
+      declarations: [CyptolandingComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

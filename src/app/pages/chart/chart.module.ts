@@ -15,7 +15,12 @@ import { ChartistComponent } from './chartist/chartist.component';
 import { EchartComponent } from './echart/echart.component';
 
 @NgModule({
-  declarations: [ApexComponent, ChartjsComponent, ChartistComponent, EchartComponent],
+  declarations: [
+    ApexComponent,
+    ChartjsComponent,
+    ChartistComponent,
+    EchartComponent,
+  ],
   imports: [
     CommonModule,
     ChartRoutingModule,
@@ -24,8 +29,8 @@ import { EchartComponent } from './echart/echart.component';
     ChartsModule,
     NgxChartistModule,
     NgxEchartsModule.forRoot({
-      echarts: () => import('echarts')
-    })
-  ]
+      echarts: () => import('echarts'),
+    }),
+  ],
 })
-export class ChartModule { }
+export class ChartModule {}

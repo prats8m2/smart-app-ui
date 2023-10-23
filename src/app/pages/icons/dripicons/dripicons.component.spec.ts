@@ -8,9 +8,8 @@ describe('DripiconsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ DripiconsComponent ]
-    })
-    .compileComponents();
+      declarations: [DripiconsComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

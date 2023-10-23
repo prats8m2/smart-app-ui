@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-faqs',
   templateUrl: './faqs.component.html',
-  styleUrls: ['./faqs.component.scss']
+  styleUrls: ['./faqs.component.scss'],
 })
 
 /**
@@ -13,9 +13,12 @@ export class FaqsComponent implements OnInit {
   // bread crumb items
   breadCrumbItems: Array<{}>;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Utility' }, { label: 'FAQs', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Utility' },
+      { label: 'FAQs', active: true },
+    ];
   }
 }

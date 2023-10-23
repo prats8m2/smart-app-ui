@@ -7,7 +7,7 @@ import { ChartType } from './profile.model';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
 })
 
 /**
@@ -19,10 +19,13 @@ export class ProfileComponent implements OnInit {
 
   revenueBarChart: ChartType;
   statData;
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Contacts' }, { label: 'Profile', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Contacts' },
+      { label: 'Profile', active: true },
+    ];
 
     // fetches the data
     this._fetchData();

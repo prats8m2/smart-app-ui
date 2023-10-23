@@ -4,22 +4,27 @@ import { ChartType } from './chartist.model';
 
 import {
   // tslint:disable-next-line: max-line-length
-  simpleLineChart, lineScatter, areaLineChart, overlappingBarChart, stackBarChart, horizontalBarChart,
-  donutAnimateChart, simplePieChart
+  simpleLineChart,
+  lineScatter,
+  areaLineChart,
+  overlappingBarChart,
+  stackBarChart,
+  horizontalBarChart,
+  donutAnimateChart,
+  simplePieChart,
 } from './data';
 
 @Component({
   selector: 'app-chartist',
   templateUrl: './chartist.component.html',
-  styleUrls: ['./chartist.component.scss']
+  styleUrls: ['./chartist.component.scss'],
 })
 
 /**
  * Chartist-chart component
  */
 export class ChartistComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   // bread crumb items
   breadCrumbItems: Array<{}>;
@@ -42,7 +47,10 @@ export class ChartistComponent implements OnInit {
   simplePieChart: ChartType;
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Charts' }, { label: 'Chartist chart', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Charts' },
+      { label: 'Chartist chart', active: true },
+    ];
 
     /**
      * fetches data
@@ -54,7 +62,6 @@ export class ChartistComponent implements OnInit {
    * fetches the chart data
    */
   private _fetchData() {
-
     // Simple line chart data
     this.simpleLineChart = simpleLineChart;
     // Line Scatter Diagram data

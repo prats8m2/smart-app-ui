@@ -5,7 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-modals',
   templateUrl: './modals.component.html',
-  styleUrls: ['./modals.component.scss']
+  styleUrls: ['./modals.component.scss'],
 })
 
 /**
@@ -15,10 +15,13 @@ export class ModalsComponent implements OnInit {
   // bread crumb items
   breadCrumbItems: Array<{}>;
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal) {}
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'UI Elements' }, { label: 'Modals', active: true }];
+    this.breadCrumbItems = [
+      { label: 'UI Elements' },
+      { label: 'Modals', active: true },
+    ];
   }
 
   /**
@@ -68,5 +71,4 @@ export class ModalsComponent implements OnInit {
   scrollModal(scrollDataModal: any) {
     this.modalService.open(scrollDataModal, { scrollable: true });
   }
-
 }

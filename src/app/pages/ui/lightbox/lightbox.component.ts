@@ -9,7 +9,6 @@ import { MapsAPILoader } from '@agm/core';
   styleUrls: ['./lightbox.component.scss'],
 })
 export class LightboxComponent implements OnInit {
-
   // bread crumb items
   breadCrumbItems: Array<{}>;
   albums = [];
@@ -23,11 +22,16 @@ export class LightboxComponent implements OnInit {
   zoom: number = 15;
 
   ngOnInit(): void {
-    this.breadCrumbItems = [{ label: 'UI Elements' }, { label: 'Lightbox', active: true }];
-
+    this.breadCrumbItems = [
+      { label: 'UI Elements' },
+      { label: 'Lightbox', active: true },
+    ];
   }
-  constructor(private lightbox: Lightbox, private modalService: NgbModal, private mapsAPILoader: MapsAPILoader) {
-
+  constructor(
+    private lightbox: Lightbox,
+    private modalService: NgbModal,
+    private mapsAPILoader: MapsAPILoader,
+  ) {
     for (let i = 1; i <= 1; i++) {
       const src = '../../../assets/images/small/img-' + i + '.jpg';
       const caption = 'Image ' + i + ' caption here';
@@ -35,7 +39,7 @@ export class LightboxComponent implements OnInit {
       const album = {
         src,
         caption,
-        thumb
+        thumb,
       };
       this.images.push(album);
     }
@@ -47,7 +51,7 @@ export class LightboxComponent implements OnInit {
       const album = {
         src,
         caption,
-        thumb
+        thumb,
       };
       this.gallery.push(album);
     }
@@ -59,7 +63,7 @@ export class LightboxComponent implements OnInit {
       const album = {
         src,
         caption,
-        thumb
+        thumb,
       };
       this.albums.push(album);
     }
@@ -71,7 +75,7 @@ export class LightboxComponent implements OnInit {
   openImage(index: number): void {
     // open lightbox
     this.lightbox.open(this.images, index, {
-      showZoom: true
+      showZoom: true,
     });
   }
 
@@ -89,7 +93,8 @@ export class LightboxComponent implements OnInit {
   openZoomGallery(index: number): void {
     // open lightbox
     this.lightbox.open(this.gallery, index, {
-      wrapAround: true, showImageNumberLabel: true
+      wrapAround: true,
+      showImageNumberLabel: true,
     });
   }
 
@@ -114,7 +119,11 @@ export class LightboxComponent implements OnInit {
    * @param content modal content
    */
   openYoutubeModal(content: any) {
-    this.modalService.open(content, { size: 'lg', windowClass: 'modal-holder', centered: true });
+    this.modalService.open(content, {
+      size: 'lg',
+      windowClass: 'modal-holder',
+      centered: true,
+    });
   }
 
   /**
@@ -122,7 +131,10 @@ export class LightboxComponent implements OnInit {
    * @param googlemap modal content
    */
   openMapModal(content: any) {
-    this.modalService.open(content, { size: 'lg', windowClass: 'modal-holder', centered: true });
+    this.modalService.open(content, {
+      size: 'lg',
+      windowClass: 'modal-holder',
+      centered: true,
+    });
   }
-
 }

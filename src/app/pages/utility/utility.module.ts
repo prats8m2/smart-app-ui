@@ -11,15 +11,19 @@ import { TimelineComponent } from './timeline/timeline.component';
 import { FaqsComponent } from './faqs/faqs.component';
 import { PricingComponent } from './pricing/pricing.component';
 
-
 @NgModule({
-  declarations: [StarterComponent, TimelineComponent, FaqsComponent, PricingComponent],
+  declarations: [
+    StarterComponent,
+    TimelineComponent,
+    FaqsComponent,
+    PricingComponent,
+  ],
   imports: [
     CommonModule,
     UtiliytRoutingModule,
     UIModule,
     NgbNavModule,
-    CarouselModule
-  ]
+    CarouselModule,
+  ],
 })
-export class UtilityModule { }
+export class UtilityModule {}

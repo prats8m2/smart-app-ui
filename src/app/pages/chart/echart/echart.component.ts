@@ -1,21 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 
-import { lineChart, barChart, pieChart, customPieChart, gradientBarChart, gaugeChart, lineBarChart, donughnutChart, bubbleChart } from './data';
+import {
+  lineChart,
+  barChart,
+  pieChart,
+  customPieChart,
+  gradientBarChart,
+  gaugeChart,
+  lineBarChart,
+  donughnutChart,
+  bubbleChart,
+} from './data';
 
 import { ChartType } from './echart.model';
 
 @Component({
   selector: 'app-echart',
   templateUrl: './echart.component.html',
-  styleUrls: ['./echart.component.scss']
+  styleUrls: ['./echart.component.scss'],
 })
 
 /**
  * E-chart component
  */
 export class EchartComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   lineChart: ChartType;
   barChart: ChartType;
@@ -31,7 +40,10 @@ export class EchartComponent implements OnInit {
   breadCrumbItems: Array<{}>;
 
   ngOnInit(): void {
-    this.breadCrumbItems = [{ label: 'Charts' }, { label: 'E - Chart', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Charts' },
+      { label: 'E - Chart', active: true },
+    ];
 
     this._fetchData();
   }
@@ -50,5 +62,4 @@ export class EchartComponent implements OnInit {
     this.bubbleChart = bubbleChart;
     this.gaugeChart = gaugeChart;
   }
-
 }

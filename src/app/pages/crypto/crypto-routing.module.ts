@@ -9,34 +9,34 @@ import { KycapplicationComponent } from './kycapplication/kycapplication.compone
 import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
-    {
-        path: 'wallet',
-        component: WalletComponent
-    },
-    {
-        path: 'buy-sell',
-        component: BuysellComponent
-    },
-    {
-        path: 'exchange',
-        component: ExchangeComponent
-    },
-    {
-        path: 'lending',
-        component: LendingComponent
-    },
-    {
-        path: 'orders',
-        component: OrdersComponent
-    },
-    {
-        path: 'kyc-application',
-        component: KycapplicationComponent
-    }
-]
+  {
+    path: 'wallet',
+    component: WalletComponent,
+  },
+  {
+    path: 'buy-sell',
+    component: BuysellComponent,
+  },
+  {
+    path: 'exchange',
+    component: ExchangeComponent,
+  },
+  {
+    path: 'lending',
+    component: LendingComponent,
+  },
+  {
+    path: 'orders',
+    component: OrdersComponent,
+  },
+  {
+    path: 'kyc-application',
+    component: KycapplicationComponent,
+  },
+];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class CryptoRoutingModule { }
+export class CryptoRoutingModule {}

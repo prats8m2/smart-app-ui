@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-buttons',
   templateUrl: './buttons.component.html',
-  styleUrls: ['./buttons.component.scss']
+  styleUrls: ['./buttons.component.scss'],
 })
 
 /**
@@ -13,9 +13,12 @@ export class ButtonsComponent implements OnInit {
   // bread crumb items
   breadCrumbItems: Array<{}>;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'UI Elements' }, { label: 'Buttons', active: true }];
+    this.breadCrumbItems = [
+      { label: 'UI Elements' },
+      { label: 'Buttons', active: true },
+    ];
   }
 }

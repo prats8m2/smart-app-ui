@@ -7,24 +7,26 @@ import { projectData } from '../projectdata';
 @Component({
   selector: 'app-projectlist',
   templateUrl: './projectlist.component.html',
-  styleUrls: ['./projectlist.component.scss']
+  styleUrls: ['./projectlist.component.scss'],
 })
 
 /**
  * Projects-list component
  */
 export class ProjectlistComponent implements OnInit {
+  // bread crumb items
+  breadCrumbItems: Array<{}>;
 
- // bread crumb items
- breadCrumbItems: Array<{}>;
+  projectData: Project[];
 
- projectData: Project[];
+  constructor() {}
 
- constructor() { }
+  ngOnInit() {
+    this.breadCrumbItems = [
+      { label: 'Projects' },
+      { label: 'Projects List', active: true },
+    ];
 
- ngOnInit() {
-   this.breadCrumbItems = [{ label: 'Projects' }, { label: 'Projects List', active: true }];
-
-   this.projectData = projectData;
- }
+    this.projectData = projectData;
+  }
 }

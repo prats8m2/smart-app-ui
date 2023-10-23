@@ -7,23 +7,25 @@ import { ChartType } from './overview.model';
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.scss']
+  styleUrls: ['./overview.component.scss'],
 })
 
 /**
  * Overview component
  */
 export class OverviewComponent implements OnInit {
-
   // bread crumb items
   breadCrumbItems: Array<{}>;
 
   overviewBarChart: ChartType;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Projects' }, { label: 'Projects Overview', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Projects' },
+      { label: 'Projects Overview', active: true },
+    ];
 
     this.overviewBarChart = overviewBarChart;
   }

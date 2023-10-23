@@ -8,30 +8,30 @@ import { BillingComponent } from './billing/billing.component';
 import { AlertComponent } from './alert/alert.component';
 
 const routes: Routes = [
-    {
-        path: 'inbox',
-        component: InboxComponent
-    },
-    {
-        path: 'read/:id',
-        component: EmailreadComponent
-    },
-    {
-        path: 'basic',
-        component: BasicComponent
-    },
-    {
-        path: 'billing',
-        component: BillingComponent
-    },
-    {
-        path: 'alert',
-        component: AlertComponent
-    }
+  {
+    path: 'inbox',
+    component: InboxComponent,
+  },
+  {
+    path: 'read/:id',
+    component: EmailreadComponent,
+  },
+  {
+    path: 'basic',
+    component: BasicComponent,
+  },
+  {
+    path: 'billing',
+    component: BillingComponent,
+  },
+  {
+    path: 'alert',
+    component: AlertComponent,
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
 export class EmailRoutingModule {}

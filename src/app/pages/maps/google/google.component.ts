@@ -1,4 +1,11 @@
-import { Component, OnInit, ViewChild, Input, Inject, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  Input,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
 
 import { MapsAPILoader } from '@agm/core';
 
@@ -7,7 +14,7 @@ import { isPlatformBrowser } from '@angular/common';
 @Component({
   selector: 'app-google',
   templateUrl: './google.component.html',
-  styleUrls: ['./google.component.scss']
+  styleUrls: ['./google.component.scss'],
 })
 
 /**
@@ -23,11 +30,16 @@ export class GoogleComponent implements OnInit {
 
   // bread crumb items
   breadCrumbItems: Array<{}>;
-  constructor(@Inject(PLATFORM_ID) private platformId: any, private mapsAPILoader: MapsAPILoader) { }
-
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: any,
+    private mapsAPILoader: MapsAPILoader,
+  ) {}
 
   ngOnInit(): void {
-    this.breadCrumbItems = [{ label: 'Maps' }, { label: 'Google Maps', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Maps' },
+      { label: 'Google Maps', active: true },
+    ];
 
     this._initPanorama();
 
@@ -45,14 +57,19 @@ export class GoogleComponent implements OnInit {
       this.mapsAPILoader.load().then(() => {
         const center = { lat: 42.345573, lng: -71.098326 };
         // tslint:disable-next-line: no-string-literal
-        const map = new window['google'].maps.Map(this.streetviewMap.nativeElement, { center, zoom: 12, scrollwheel: false });
+        const map = new window['google'].maps.Map(
+          this.streetviewMap.nativeElement,
+          { center, zoom: 12, scrollwheel: false },
+        );
         // tslint:disable-next-line: no-string-literal
         const panorama = new window['google'].maps.StreetViewPanorama(
-          this.streetviewPano.nativeElement, {
-          position: center,
-          pov: { heading: 34, pitch: 10 },
-          scrollwheel: false
-        });
+          this.streetviewPano.nativeElement,
+          {
+            position: center,
+            pov: { heading: 34, pitch: 10 },
+            scrollwheel: false,
+          },
+        );
         map.setStreetView(panorama);
       });
     }
@@ -73,9 +90,6 @@ export class GoogleComponent implements OnInit {
    * Fetches the value of map
    */
   private _fetchData() {
-    this.markers = [
-      { latitude: 52.228973, longitude: 20.728218 }
-    ];
+    this.markers = [{ latitude: 52.228973, longitude: 20.728218 }];
   }
-
 }

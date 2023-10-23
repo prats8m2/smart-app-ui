@@ -4,15 +4,13 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 @Component({
   selector: 'app-confirmmail2',
   templateUrl: './confirmmail2.component.html',
-  styleUrls: ['./confirmmail2.component.scss']
+  styleUrls: ['./confirmmail2.component.scss'],
 })
 export class Confirmmail2Component implements OnInit {
-
-  constructor() { }
+  constructor() {}
   // set the currenr year
   year: number = new Date().getFullYear();
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   carouselOption: OwlOptions = {
     items: 1,
@@ -22,8 +20,8 @@ export class Confirmmail2Component implements OnInit {
     dots: true,
     responsive: {
       680: {
-        items: 1
+        items: 1,
       },
-    }
-  }
+    },
+  };
 }

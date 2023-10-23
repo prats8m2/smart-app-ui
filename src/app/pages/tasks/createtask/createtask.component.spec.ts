@@ -8,9 +8,8 @@ describe('CreatetaskComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreatetaskComponent ]
-    })
-    .compileComponents();
+      declarations: [CreatetaskComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -8,13 +8,16 @@ import { Table } from './advanced.model';
 import { tableData, editableTable } from './data';
 
 import { AdvancedService } from './advanced.service';
-import { AdvancedSortableDirective, SortEvent } from './advanced-sortable.directive';
+import {
+  AdvancedSortableDirective,
+  SortEvent,
+} from './advanced-sortable.directive';
 
 @Component({
   selector: 'app-advancedtable',
   templateUrl: './advancedtable.component.html',
   styleUrls: ['./advancedtable.component.scss'],
-  providers: [AdvancedService, DecimalPipe]
+  providers: [AdvancedService, DecimalPipe],
 })
 
 /**
@@ -31,7 +34,8 @@ export class AdvancedtableComponent implements OnInit {
   total$: Observable<number>;
   editableTable: any;
 
-  @ViewChildren(AdvancedSortableDirective) headers: QueryList<AdvancedSortableDirective>;
+  @ViewChildren(AdvancedSortableDirective)
+  headers: QueryList<AdvancedSortableDirective>;
   public isCollapsed = true;
 
   constructor(public service: AdvancedService) {
@@ -75,7 +79,10 @@ export class AdvancedtableComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Tables' }, { label: 'Advanced Table', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Tables' },
+      { label: 'Advanced Table', active: true },
+    ];
     /**
      * fetch data
      */
@@ -85,7 +92,6 @@ export class AdvancedtableComponent implements OnInit {
   changeValue(i) {
     this.hideme[i] = !this.hideme[i];
   }
-
 
   /**
    * fetches the table value

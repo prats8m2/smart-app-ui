@@ -6,14 +6,13 @@ import { LAYOUT_WIDTH, SIDEBAR_TYPE, TOPBAR } from '../layouts.model';
 @Component({
   selector: 'app-rightsidebar',
   templateUrl: './rightsidebar.component.html',
-  styleUrls: ['./rightsidebar.component.scss']
+  styleUrls: ['./rightsidebar.component.scss'],
 })
 
 /**
  * Rightsidebar component
  */
 export class RightsidebarComponent implements OnInit {
-
   isVisible: string;
   attribute: string;
 
@@ -21,7 +20,7 @@ export class RightsidebarComponent implements OnInit {
   sidebartype: string;
   topbar: string;
 
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventService) {}
 
   ngOnInit() {
     this.width = LAYOUT_WIDTH;
@@ -63,8 +62,7 @@ export class RightsidebarComponent implements OnInit {
   changeLayout(layout) {
     if (layout.target.checked == true)
       this.eventService.broadcast('changeLayout', 'vertical');
-    else
-      this.eventService.broadcast('changeLayout', 'horizontal');
+    else this.eventService.broadcast('changeLayout', 'horizontal');
   }
 
   changeWidth(width: string) {

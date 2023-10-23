@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { NgOtpInputModule } from  'ng-otp-input';
+import { NgOtpInputModule } from 'ng-otp-input';
 
 import { ExtrapagesRoutingModule } from './extrapages-routing.module';
 
@@ -18,15 +18,30 @@ import { Verification2Component } from './verification2/verification2.component'
 import { SteptwoverificationComponent } from './steptwoverification/steptwoverification.component';
 import { Steptwoverification2Component } from './steptwoverification2/steptwoverification2.component';
 import { ComingsoonComponent } from './comingsoon/comingsoon.component';
+import { PagePermissionDeniedComponent } from './page-permission-denied/page-permission-denied.component';
 
 @NgModule({
   // tslint:disable-next-line: max-line-length
-  declarations: [MaintenanceComponent, Page404Component, Page500Component, LockscreenComponent, Lockscreen2Component, ConfirmmailComponent, Confirmmail2Component, VerificationComponent, Verification2Component, SteptwoverificationComponent, Steptwoverification2Component, ComingsoonComponent],
+  declarations: [
+    MaintenanceComponent,
+    Page404Component,
+    Page500Component,
+    LockscreenComponent,
+    Lockscreen2Component,
+    ConfirmmailComponent,
+    Confirmmail2Component,
+    VerificationComponent,
+    Verification2Component,
+    SteptwoverificationComponent,
+    Steptwoverification2Component,
+    ComingsoonComponent,
+    PagePermissionDeniedComponent,
+  ],
   imports: [
     CommonModule,
     CarouselModule,
     ExtrapagesRoutingModule,
-    NgOtpInputModule
-  ]
+    NgOtpInputModule,
+  ],
 })
-export class ExtrapagesModule { }
+export class ExtrapagesModule {}

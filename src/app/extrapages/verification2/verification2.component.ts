@@ -4,15 +4,13 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 @Component({
   selector: 'app-verification2',
   templateUrl: './verification2.component.html',
-  styleUrls: ['./verification2.component.scss']
+  styleUrls: ['./verification2.component.scss'],
 })
 export class Verification2Component implements OnInit {
-
-  constructor() { }
+  constructor() {}
   // set the currenr year
   year: number = new Date().getFullYear();
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   carouselOption: OwlOptions = {
     items: 1,
@@ -22,8 +20,8 @@ export class Verification2Component implements OnInit {
     dots: true,
     responsive: {
       680: {
-        items: 1
+        items: 1,
       },
-    }
-  }
+    },
+  };
 }

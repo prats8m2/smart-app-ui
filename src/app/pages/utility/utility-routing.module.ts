@@ -7,26 +7,26 @@ import { PricingComponent } from './pricing/pricing.component';
 import { FaqsComponent } from './faqs/faqs.component';
 
 const routes: Routes = [
-    {
-        path: 'starter',
-        component: StarterComponent
-    },
-    {
-        path: 'timeline',
-        component: TimelineComponent
-    },
-    {
-        path: 'pricing',
-        component: PricingComponent
-    },
-    {
-        path: 'faqs',
-        component: FaqsComponent
-    }
+  {
+    path: 'starter',
+    component: StarterComponent,
+  },
+  {
+    path: 'timeline',
+    component: TimelineComponent,
+  },
+  {
+    path: 'pricing',
+    component: PricingComponent,
+  },
+  {
+    path: 'faqs',
+    component: FaqsComponent,
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class UtiliytRoutingModule { }
+export class UtiliytRoutingModule {}

@@ -13,10 +13,9 @@ import { OveviewChart, activitiesData } from './data';
   selector: 'app-wallet',
   templateUrl: './wallet.component.html',
   styleUrls: ['./wallet.component.scss'],
-  providers: [WalletService, DecimalPipe]
+  providers: [WalletService, DecimalPipe],
 })
 export class WalletComponent implements OnInit {
-
   // breadcrumb items
   breadCrumbItems: Array<{}>;
   OveviewChart: ChartType;
@@ -26,26 +25,29 @@ export class WalletComponent implements OnInit {
   activities$: Observable<Activities[]>;
   total$: Observable<number>;
 
-  @ViewChildren(WalletSortableService) headers: QueryList<WalletSortableService>;
+  @ViewChildren(WalletSortableService)
+  headers: QueryList<WalletSortableService>;
 
   constructor(public service: WalletService) {
     this.activities$ = service.activities$;
     this.total$ = service.total$;
   }
 
-
   ngOnInit(): void {
-    this.breadCrumbItems = [{ label: 'Crypto' }, { label: 'Wallets', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Crypto' },
+      { label: 'Wallets', active: true },
+    ];
 
     this.OveviewChart = OveviewChart;
     this.activitiesData = activitiesData;
   }
 
   /**
- * Sort table data
- * @param param0 sort the column
- *
- */
+   * Sort table data
+   * @param param0 sort the column
+   *
+   */
   onSort({ column, direction }: SortEvent) {
     // resetting other headers
     this.headers.forEach(header => {

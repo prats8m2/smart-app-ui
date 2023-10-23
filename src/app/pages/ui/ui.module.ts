@@ -4,9 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { UIModule } from '../../shared/ui/ui.module';
 import {
-  NgbAlertModule, NgbCarouselModule, NgbDropdownModule, NgbModalModule, NgbProgressbarModule,
-  NgbTooltipModule, NgbPopoverModule, NgbPaginationModule, NgbNavModule, NgbAccordionModule,
-  NgbCollapseModule
+  NgbAlertModule,
+  NgbCarouselModule,
+  NgbDropdownModule,
+  NgbModalModule,
+  NgbProgressbarModule,
+  NgbTooltipModule,
+  NgbPopoverModule,
+  NgbPaginationModule,
+  NgbNavModule,
+  NgbAccordionModule,
+  NgbCollapseModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { Ng5SliderModule } from 'ng5-slider';
 import { ImageCropperModule } from 'ngx-image-cropper';
@@ -36,7 +44,27 @@ import { PlaceholderComponent } from './placeholder/placeholder.component';
 
 @NgModule({
   // tslint:disable-next-line: max-line-length
-  declarations: [AlertsComponent, ButtonsComponent, CardsComponent, CarouselComponent, DropdownsComponent, GridComponent, ImagesComponent, ModalsComponent, ProgressbarComponent, TypographyComponent, GeneralComponent, ColorsComponent, VideoComponent, TabsComponent, SweetalertComponent, RangesliderComponent, ImagecropperComponent, LightboxComponent, PlaceholderComponent],
+  declarations: [
+    AlertsComponent,
+    ButtonsComponent,
+    CardsComponent,
+    CarouselComponent,
+    DropdownsComponent,
+    GridComponent,
+    ImagesComponent,
+    ModalsComponent,
+    ProgressbarComponent,
+    TypographyComponent,
+    GeneralComponent,
+    ColorsComponent,
+    VideoComponent,
+    TabsComponent,
+    SweetalertComponent,
+    RangesliderComponent,
+    ImagecropperComponent,
+    LightboxComponent,
+    PlaceholderComponent,
+  ],
   imports: [
     CommonModule,
     UiRoutingModule,
@@ -57,8 +85,8 @@ import { PlaceholderComponent } from './placeholder/placeholder.component';
     ImageCropperModule,
     NgxYoutubePlayerModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAbvyBxmMbFhrzP9Z8moyYr6dCr-pzjhBE'
+      apiKey: 'AIzaSyAbvyBxmMbFhrzP9Z8moyYr6dCr-pzjhBE',
     }),
   ],
 })
-export class UiModule { }
+export class UiModule {}

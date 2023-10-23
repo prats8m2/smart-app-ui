@@ -7,15 +7,17 @@ import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 @Component({
   selector: 'app-addproduct',
   templateUrl: './addproduct.component.html',
-  styleUrls: ['./addproduct.component.scss']
+  styleUrls: ['./addproduct.component.scss'],
 })
 
 /**
  * Ecommerce add-product component
  */
 export class AddproductComponent implements OnInit {
-
-  constructor(public formBuilder: FormBuilder, private http: HttpClient) { }
+  constructor(
+    public formBuilder: FormBuilder,
+    private http: HttpClient,
+  ) {}
   /**
    * Returns form
    */
@@ -36,19 +38,28 @@ export class AddproductComponent implements OnInit {
     acceptedFiles: 'image/*',
     method: 'POST',
     uploadMultiple: false,
-    accept: (file) => {
+    accept: file => {
       this.onAccept(file);
-    }
+    },
   };
   image = '';
   file = '';
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Ecommerce' }, { label: 'Add Product', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Ecommerce' },
+      { label: 'Add Product', active: true },
+    ];
 
     this.productForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]+')]],
-      manufacture_name: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]+')]],
-      manufacture_brand: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]+')]],
+      manufacture_name: [
+        '',
+        [Validators.required, Validators.pattern('[a-zA-Z0-9]+')],
+      ],
+      manufacture_brand: [
+        '',
+        [Validators.required, Validators.pattern('[a-zA-Z0-9]+')],
+      ],
       price: ['', [Validators.required]],
     });
     this.submit = false;
@@ -65,13 +76,20 @@ export class AddproductComponent implements OnInit {
     this.submit = true;
     const formData = new FormData();
     formData.append('name', this.productForm.get('name').value);
-    formData.append('manufacture_name', this.productForm.get('manufacture_name').value);
-    formData.append('manufacture_brand', this.productForm.get('manufacture_brand').value);
+    formData.append(
+      'manufacture_name',
+      this.productForm.get('manufacture_name').value,
+    );
+    formData.append(
+      'manufacture_brand',
+      this.productForm.get('manufacture_brand').value,
+    );
     formData.append('price', this.productForm.get('price').value);
     formData.append('image', this.file, this.image);
 
-    this.http.post<any>(`http://localhost:8000/api/products`, formData)
-      .subscribe((data) => {
+    this.http
+      .post<any>(`http://localhost:8000/api/products`, formData)
+      .subscribe(data => {
         return data;
       });
   }

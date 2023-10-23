@@ -8,9 +8,8 @@ describe('BoxiconsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ BoxiconsComponent ]
-    })
-    .compileComponents();
+      declarations: [BoxiconsComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

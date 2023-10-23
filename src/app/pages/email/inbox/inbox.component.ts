@@ -8,14 +8,13 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-inbox',
   templateUrl: './inbox.component.html',
-  styleUrls: ['./inbox.component.scss']
+  styleUrls: ['./inbox.component.scss'],
 })
 
 /**
  * Email Inbox component
  */
 export class InboxComponent implements OnInit {
-
   public Editor = ClassicEditor;
   // bread crumb items
   breadCrumbItems: Array<{}>;
@@ -34,11 +33,13 @@ export class InboxComponent implements OnInit {
   startIndex = 1;
   endIndex = 15;
 
-  constructor(private modalService: NgbModal) {
-  }
+  constructor(private modalService: NgbModal) {}
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Email' }, { label: 'Inbox', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Email' },
+      { label: 'Inbox', active: true },
+    ];
     this.emailData = emailData;
     this.totalRecords = emailData.length;
   }
@@ -80,12 +81,12 @@ export class InboxComponent implements OnInit {
   confirm() {
     Swal.fire({
       title: 'Are you sure?',
-      text: 'You won\'t be able to revert this!',
+      text: "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#34c38f',
       cancelButtonColor: '#f46a6a',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Yes, delete it!',
     }).then(result => {
       if (result.value) {
         this.deleteMail();

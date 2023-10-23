@@ -6,7 +6,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { DndModule } from 'ngx-drag-drop';
-import { NgbDropdownModule, NgbModalModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbDropdownModule,
+  NgbModalModule,
+  NgbDatepickerModule,
+} from '@ng-bootstrap/ng-bootstrap';
 
 import { TasksRoutingModule } from './tasks-routing.module';
 import { UIModule } from '../../shared/ui/ui.module';
@@ -28,7 +32,7 @@ import { CreatetaskComponent } from './createtask/createtask.component';
     NgbModalModule,
     CKEditorModule,
     DndModule,
-    NgbDropdownModule
-  ]
+    NgbDropdownModule,
+  ],
 })
-export class TasksModule { }
+export class TasksModule {}

@@ -23,8 +23,9 @@ import { ProfileComponent } from './profile/profile.component';
     UIModule,
     NgSelectModule,
     NgApexchartsModule,
-    FormsModule, ReactiveFormsModule ,
-    NgbTooltipModule
-  ]
+    FormsModule,
+    ReactiveFormsModule,
+    NgbTooltipModule,
+  ],
 })
-export class ContactsModule { }
+export class ContactsModule {}

@@ -25,7 +25,17 @@ import { LayoutsComponent } from './layouts/layouts.component';
 
 @NgModule({
   // tslint:disable-next-line: max-line-length
-  declarations: [ElementsComponent, ValidationComponent, EditorComponent, UploadsComponent, WizardComponent, MaskComponent, AdvancedformComponent, RepeaterComponent, LayoutsComponent],
+  declarations: [
+    ElementsComponent,
+    ValidationComponent,
+    EditorComponent,
+    UploadsComponent,
+    WizardComponent,
+    MaskComponent,
+    AdvancedformComponent,
+    RepeaterComponent,
+    LayoutsComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -39,7 +49,7 @@ import { LayoutsComponent } from './layouts/layouts.component';
     UiSwitchModule,
     ColorPickerModule,
     NgbDatepickerModule,
-    DropzoneModule
-  ]
+    DropzoneModule,
+  ],
 })
-export class FormModule { }
+export class FormModule {}

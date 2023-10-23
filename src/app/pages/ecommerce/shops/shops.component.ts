@@ -7,23 +7,25 @@ import { Shops } from './shops.model';
 @Component({
   selector: 'app-shops',
   templateUrl: './shops.component.html',
-  styleUrls: ['./shops.component.scss']
+  styleUrls: ['./shops.component.scss'],
 })
 
 /**
  * Ecommerce Shops component
  */
 export class ShopsComponent implements OnInit {
-
   // bread crumb items
   breadCrumbItems: Array<{}>;
 
   shopsData: Shops[];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Ecommerce' }, { label: 'Shops', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Ecommerce' },
+      { label: 'Shops', active: true },
+    ];
 
     /**
      * fetches data
@@ -37,6 +39,4 @@ export class ShopsComponent implements OnInit {
   private _fetchData() {
     this.shopsData = shopsData;
   }
-
 }
-

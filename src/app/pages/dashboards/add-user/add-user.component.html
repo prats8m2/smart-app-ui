@@ -1,0 +1,263 @@
+<div class="container-fluid">
+  <!-- start page title -->
+  <div class="row">
+    <div class="col-12">
+      <div
+        class="page-title-box d-flex align-items-center justify-content-between"
+      >
+        <h4 class="mb-0 font-size-18" *ngIf="!isEditScreen">Add New Account</h4>
+        <h4 class="mb-0 font-size-18" *ngIf="isEditScreen">Update Account</h4>
+      </div>
+    </div>
+  </div>
+  <!-- end page title -->
+
+  <!--Add User FORM-->
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <form
+              class="needs-validation"
+              (ngSubmit)="validSubmit()"
+              [formGroup]="userForm"
+            >
+              <!--First name, Last Name-->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="firstName">First name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="firstName"
+                      formControlName="firstName"
+                      placeholder="First name"
+                      [ngClass]="{
+                        'is-valid': submit && form.firstName.errors
+                      }"
+                    />
+                    <div
+                      *ngIf="submit && form.firstName.errors"
+                      class="valid-feedback"
+                    >
+                      <span *ngIf="form.firstName.errors.required"
+                        >Looks good!</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="lastName">Last name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="lastName"
+                      formControlName="lastName"
+                      placeholder="Last name"
+                      [ngClass]="{ 'is-valid': submit && form.lastName.errors }"
+                    />
+                    <div
+                      *ngIf="submit && form.lastName.errors"
+                      class="valid-feedback"
+                    >
+                      <span *ngIf="form.lastName.errors.required"
+                        >Looks good!</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--Username, email-->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="username">Username</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="username"
+                      formControlName="username"
+                      placeholder="Username"
+                      [ngClass]="{
+                        'is-valid': submit && form.username.errors
+                      }"
+                      [attr.disabled]="isEditScreen ? true : null"
+                    />
+                    <div
+                      *ngIf="submit && form.username.errors"
+                      class="valid-feedback"
+                    >
+                      <span *ngIf="form.username.errors.required"
+                        >Looks good!</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="username">Account Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="account"
+                      formControlName="accountName"
+                      placeholder="Account Name"
+                      [ngClass]="{
+                        'is-valid': submit && form.accountName.errors
+                      }"
+                    />
+                    <div
+                      *ngIf="submit && form.accountName.errors"
+                      class="valid-feedback"
+                    >
+                      <span *ngIf="form.username.errors.required"
+                        >Looks good!</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--Account Name-->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="email">Email</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      formControlName="email"
+                      placeholder="Email"
+                      [ngClass]="{ 'is-valid': submit && form.email.errors }"
+                      [attr.disabled]="isEditScreen ? true : null"
+                    />
+                    <div
+                      *ngIf="submit && form.email.errors"
+                      class="valid-feedback"
+                    >
+                      <span *ngIf="form.email.errors.required"
+                        >Looks good!</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="phone">Phone Number</label>
+                    <input
+                      type="phone"
+                      class="form-control"
+                      id="phone"
+                      formControlName="phone"
+                      placeholder="Phone Number"
+                      [ngClass]="{
+                        'is-valid': submit && form.phone.errors
+                      }"
+                    />
+                    <div
+                      *ngIf="submit && form.phone.errors"
+                      class="valid-feedback"
+                    >
+                      <span *ngIf="form.phone.errors.required"
+                        >Looks good!</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--PASSWORD & confirm password-->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      placeholder="Password"
+                      formControlName="password"
+                      [ngClass]="{
+                        'is-invalid': submit && type.password.errors
+                      }"
+                    />
+                    <div
+                      *ngIf="submit && type.password.errors"
+                      class="invalid-feedback"
+                    >
+                      <span *ngIf="type.password.errors.required"
+                        >Password is required.</span
+                      >
+                      <span *ngIf="type.password.errors.minlength"
+                        >Password must be at least 6 characters.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Confirm Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      placeholder="Re-Type Password"
+                      formControlName="confirmpwd"
+                      [ngClass]="{
+                        'is-invalid': submit && type.confirmpwd.errors
+                      }"
+                    />
+                    <div
+                      *ngIf="submit && type.confirmpwd.errors"
+                      class="invalid-feedback"
+                    >
+                      <span *ngIf="type.confirmpwd.errors.required"
+                        >Confirm password is required.</span
+                      >
+                      <span *ngIf="type.confirmpwd.errors.mustMatch"
+                        >Password and confirm password should be the same.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex flex-wrap gap-2">
+                <button
+                  type="reset"
+                  class="btn btn-secondary waves-effect"
+                  (click)="onReset()"
+                  [disabled]="userForm.pristine"
+                >
+                  Reset
+                </button>
+                <button
+                  *ngIf="!isEditScreen"
+                  type="submit"
+                  class="btn btn-primary waves-effect waves-light"
+                  (click)="onSave()"
+                  [disabled]="userForm.invalid || userForm.pristine"
+                >
+                  Save
+                </button>
+                <button
+                  *ngIf="isEditScreen"
+                  type="submit"
+                  class="btn btn-primary waves-effect waves-light"
+                  (click)="onUpdate()"
+                  [disabled]="userForm.invalid || userForm.pristine"
+                >
+                  Update
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

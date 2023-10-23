@@ -4,15 +4,13 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 @Component({
   selector: 'app-steptwoverification2',
   templateUrl: './steptwoverification2.component.html',
-  styleUrls: ['./steptwoverification2.component.scss']
+  styleUrls: ['./steptwoverification2.component.scss'],
 })
 export class Steptwoverification2Component implements OnInit {
-
-  constructor() { }
+  constructor() {}
   // set the currenr year
   year: number = new Date().getFullYear();
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   config = {
     allowNumbersOnly: true,
     length: 4,
@@ -20,9 +18,9 @@ export class Steptwoverification2Component implements OnInit {
     disableAutoFocus: false,
     placeholder: '',
     inputStyles: {
-      'width': '80px',
-      'height': '50px'
-    }
+      width: '80px',
+      height: '50px',
+    },
   };
   carouselOption: OwlOptions = {
     items: 1,
@@ -32,8 +30,8 @@ export class Steptwoverification2Component implements OnInit {
     dots: true,
     responsive: {
       680: {
-        items: 1
+        items: 1,
       },
-    }
-  }
+    },
+  };
 }

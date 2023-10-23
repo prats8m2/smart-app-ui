@@ -1,11 +1,22 @@
-import { Component, OnInit, ViewChild, EventEmitter, Output, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  EventEmitter,
+  Output,
+  Input,
+} from '@angular/core';
 
-import { NgbDate, NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbDate,
+  NgbCalendar,
+  NgbDateStruct,
+} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-advancedform',
   templateUrl: './advancedform.component.html',
-  styleUrls: ['./advancedform.component.scss']
+  styleUrls: ['./advancedform.component.scss'],
 })
 
 /**
@@ -14,7 +25,7 @@ import { NgbDate, NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap'
 export class AdvancedformComponent implements OnInit {
   // bread crumb items
   breadCrumbItems: Array<{}>;
-  constructor(private calendar: NgbCalendar) { }
+  constructor(private calendar: NgbCalendar) {}
 
   // Component colorpicker
   componentcolor: string;
@@ -31,7 +42,7 @@ export class AdvancedformComponent implements OnInit {
   selected: any;
 
   model: NgbDateStruct;
-  date: { year: number, month: number };
+  date: { year: number; month: number };
   // Select2 Dropdown
   selectValue: string[];
 
@@ -42,7 +53,10 @@ export class AdvancedformComponent implements OnInit {
   @ViewChild('dp', { static: true }) datePicker: any;
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Forms' }, { label: 'Advanced', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Forms' },
+      { label: 'Advanced', active: true },
+    ];
     // Component color value of color picker
     this.componentcolor = '#3bafda';
     this.presetcolor = '#2889e9';
@@ -52,7 +66,27 @@ export class AdvancedformComponent implements OnInit {
 
     // Select dropdown value
     // tslint:disable-next-line: max-line-length
-    this.selectValue = ['Alaska', 'Hawaii', 'California', 'Nevada', 'Oregon', 'Washington', 'Arizona', 'Colorado', 'Idaho', 'Montana', 'Nebraska', 'New Mexico', 'North Dakota', 'Utah', 'Wyoming', 'Alabama', 'Arkansas', 'Illinois', 'Iowa'];
+    this.selectValue = [
+      'Alaska',
+      'Hawaii',
+      'California',
+      'Nevada',
+      'Oregon',
+      'Washington',
+      'Arizona',
+      'Colorado',
+      'Idaho',
+      'Montana',
+      'Nebraska',
+      'New Mexico',
+      'North Dakota',
+      'Utah',
+      'Wyoming',
+      'Alabama',
+      'Arkansas',
+      'Illinois',
+      'Iowa',
+    ];
 
     this.selected = '';
     this.hidden = true;
@@ -71,14 +105,19 @@ export class AdvancedformComponent implements OnInit {
       this.toNGDate = date;
       this.toDate = new Date(date.year, date.month - 1, date.day);
       this.hidden = true;
-      this.selected = this.fromDate.toLocaleDateString() + '-' + this.toDate.toLocaleDateString();
-      this.dateRangeSelected.emit({ fromDate: this.fromDate, toDate: this.toDate });
+      this.selected =
+        this.fromDate.toLocaleDateString() +
+        '-' +
+        this.toDate.toLocaleDateString();
+      this.dateRangeSelected.emit({
+        fromDate: this.fromDate,
+        toDate: this.toDate,
+      });
 
       this.fromDate = null;
       this.toDate = null;
       this.fromNGDate = null;
       this.toNGDate = null;
-
     } else {
       this.fromNGDate = date;
       this.fromDate = new Date(date.year, date.month - 1, date.day);
@@ -90,7 +129,13 @@ export class AdvancedformComponent implements OnInit {
    * @param date date obj
    */
   isHovered(date: NgbDate) {
-    return this.fromNGDate && !this.toNGDate && this.hoveredDate && date.after(this.fromNGDate) && date.before(this.hoveredDate);
+    return (
+      this.fromNGDate &&
+      !this.toNGDate &&
+      this.hoveredDate &&
+      date.after(this.fromNGDate) &&
+      date.before(this.hoveredDate)
+    );
   }
 
   /**
@@ -104,7 +149,12 @@ export class AdvancedformComponent implements OnInit {
    * @param date date obj
    */
   isRange(date: NgbDate) {
-    return date.equals(this.fromNGDate) || date.equals(this.toNGDate) || this.isInside(date) || this.isHovered(date);
+    return (
+      date.equals(this.fromNGDate) ||
+      date.equals(this.toNGDate) ||
+      this.isInside(date) ||
+      this.isHovered(date)
+    );
   }
 
   /**

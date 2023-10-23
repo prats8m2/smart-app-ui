@@ -1,4 +1,11 @@
-import { Component, OnInit, ViewChild, EventEmitter, Output, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  EventEmitter,
+  Output,
+  Input,
+} from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -7,23 +14,20 @@ import { NgbDate, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-createtask',
   templateUrl: './createtask.component.html',
-  styleUrls: ['./createtask.component.scss']
+  styleUrls: ['./createtask.component.scss'],
 })
 
 /**
  * Tasks-create component
  */
 export class CreatetaskComponent implements OnInit {
-
   // bread crumb items
   breadCrumbItems: Array<{}>;
 
   public Editor = ClassicEditor;
 
   form = new FormGroup({
-    member: new FormArray([
-      new FormControl(''),
-    ]),
+    member: new FormArray([new FormControl('')]),
   });
 
   hoveredDate: NgbDate;
@@ -41,7 +45,9 @@ export class CreatetaskComponent implements OnInit {
   /**
    * Returns the form field value
    */
-  get member(): FormArray { return this.form.get('member') as FormArray; }
+  get member(): FormArray {
+    return this.form.get('member') as FormArray;
+  }
 
   /**
    * Add the member field in form
@@ -57,10 +63,13 @@ export class CreatetaskComponent implements OnInit {
     this.member.removeAt(i);
   }
 
-  constructor(private calendar: NgbCalendar) { }
+  constructor(private calendar: NgbCalendar) {}
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Tasks' }, { label: 'Create Task', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Tasks' },
+      { label: 'Create Task', active: true },
+    ];
 
     this.hidden = true;
   }
@@ -78,14 +87,19 @@ export class CreatetaskComponent implements OnInit {
       this.toNGDate = date;
       this.toDate = new Date(date.year, date.month - 1, date.day);
       this.hidden = true;
-      this.selected = this.fromDate.toLocaleDateString() + '-' + this.toDate.toLocaleDateString();
+      this.selected =
+        this.fromDate.toLocaleDateString() +
+        '-' +
+        this.toDate.toLocaleDateString();
 
-      this.dateRangeSelected.emit({ fromDate: this.fromDate, toDate: this.toDate });
+      this.dateRangeSelected.emit({
+        fromDate: this.fromDate,
+        toDate: this.toDate,
+      });
       this.fromDate = null;
       this.toDate = null;
       this.fromNGDate = null;
       this.toNGDate = null;
-
     } else {
       this.fromNGDate = date;
       this.fromDate = new Date(date.year, date.month - 1, date.day);
@@ -97,7 +111,13 @@ export class CreatetaskComponent implements OnInit {
    * @param date date obj
    */
   isHovered(date: NgbDate) {
-    return this.fromNGDate && !this.toNGDate && this.hoveredDate && date.after(this.fromNGDate) && date.before(this.hoveredDate);
+    return (
+      this.fromNGDate &&
+      !this.toNGDate &&
+      this.hoveredDate &&
+      date.after(this.fromNGDate) &&
+      date.before(this.hoveredDate)
+    );
   }
 
   /**
@@ -111,7 +131,11 @@ export class CreatetaskComponent implements OnInit {
    * @param date date obj
    */
   isRange(date: NgbDate) {
-    return date.equals(this.fromNGDate) || date.equals(this.toNGDate) || this.isInside(date) || this.isHovered(date);
+    return (
+      date.equals(this.fromNGDate) ||
+      date.equals(this.toNGDate) ||
+      this.isInside(date) ||
+      this.isHovered(date)
+    );
   }
-
 }

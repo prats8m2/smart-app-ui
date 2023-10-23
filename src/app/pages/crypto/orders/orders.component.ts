@@ -3,18 +3,17 @@ import { DecimalPipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
-import { OrderSortableService, SortEvent } from './orders-sortable.directive'
+import { OrderSortableService, SortEvent } from './orders-sortable.directive';
 
-import { OrderService } from './orders.service'
-import { Orders } from './orders.model'
-import { ordersData } from './data'
+import { OrderService } from './orders.service';
+import { Orders } from './orders.model';
+import { ordersData } from './data';
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss'],
-  providers: [OrderService, DecimalPipe]
-
+  providers: [OrderService, DecimalPipe],
 })
 export class OrdersComponent implements OnInit {
   // breadcrumb items
@@ -33,18 +32,20 @@ export class OrdersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.breadCrumbItems = [{ label: 'Crypto' }, { label: 'Orders', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Crypto' },
+      { label: 'Orders', active: true },
+    ];
 
     this.ordersData = ordersData;
   }
 
   /**
-  * Sort table data
-  * @param param0 sort the column
-  *
-  */
+   * Sort table data
+   * @param param0 sort the column
+   *
+   */
   onSort({ column, direction }: SortEvent) {
-  
     // resetting other headers
     this.headers.forEach(header => {
       if (header.sortable !== column) {

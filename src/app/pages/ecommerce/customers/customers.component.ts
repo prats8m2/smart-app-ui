@@ -9,14 +9,13 @@ import { customersData } from './data';
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
-  styleUrls: ['./customers.component.scss']
+  styleUrls: ['./customers.component.scss'],
 })
 
 /**
  * Ecomerce Customers component
  */
 export class CustomersComponent implements OnInit {
-
   // bread crumb items
   breadCrumbItems: Array<{}>;
   formData: FormGroup;
@@ -28,17 +27,29 @@ export class CustomersComponent implements OnInit {
   // page
   currentpage: number;
 
-  constructor(private modalService: NgbModal, private formBuilder: FormBuilder) { }
+  constructor(
+    private modalService: NgbModal,
+    private formBuilder: FormBuilder,
+  ) {}
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Ecommerce' }, { label: 'Customers', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Ecommerce' },
+      { label: 'Customers', active: true },
+    ];
 
     this.formData = this.formBuilder.group({
       username: ['', [Validators.required]],
       phone: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
+        ],
+      ],
       address: ['', [Validators.required]],
-      balance: ['', [Validators.required]]
+      balance: ['', [Validators.required]],
     });
 
     this.currentpage = 1;
@@ -70,11 +81,11 @@ export class CustomersComponent implements OnInit {
   saveCustomer() {
     const currentDate = new Date();
     if (this.formData.valid) {
-     const username = this.formData.get('username').value;
-     const email = this.formData.get('email').value;
-     const phone = this.formData.get('phone').value;
-     const address = this.formData.get('address').value;
-     const balance = this.formData.get('balance').value;
+      const username = this.formData.get('username').value;
+      const email = this.formData.get('email').value;
+      const phone = this.formData.get('phone').value;
+      const address = this.formData.get('address').value;
+      const balance = this.formData.get('balance').value;
 
       this.customersData.push({
         id: this.customersData.length + 1,
@@ -84,10 +95,10 @@ export class CustomersComponent implements OnInit {
         address,
         balance,
         rating: '4.3',
-        date: currentDate + ':' 
-      })
-      this.modalService.dismissAll()
+        date: currentDate + ':',
+      });
+      this.modalService.dismissAll();
     }
-    this.submitted = true
+    this.submitted = true;
   }
 }

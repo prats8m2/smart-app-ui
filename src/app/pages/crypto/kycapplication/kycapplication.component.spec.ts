@@ -8,9 +8,8 @@ describe('KycapplicationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ KycapplicationComponent ]
-    })
-    .compileComponents();
+      declarations: [KycapplicationComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

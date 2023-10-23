@@ -8,9 +8,8 @@ describe('AdvancedformComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdvancedformComponent ]
-    })
-    .compileComponents();
+      declarations: [AdvancedformComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

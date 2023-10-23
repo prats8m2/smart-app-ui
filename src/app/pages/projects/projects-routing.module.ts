@@ -7,26 +7,26 @@ import { OverviewComponent } from './overview/overview.component';
 import { CreateComponent } from './create/create.component';
 
 const routes: Routes = [
-    {
-        path: 'grid',
-        component: ProjectgridComponent
-    },
-    {
-        path: 'list',
-        component: ProjectlistComponent
-    },
-    {
-        path: 'overview',
-        component: OverviewComponent
-    },
-    {
-        path: 'create',
-        component: CreateComponent
-    }
+  {
+    path: 'grid',
+    component: ProjectgridComponent,
+  },
+  {
+    path: 'list',
+    component: ProjectlistComponent,
+  },
+  {
+    path: 'overview',
+    component: OverviewComponent,
+  },
+  {
+    path: 'create',
+    component: CreateComponent,
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
 export class ProjectsRoutingModule {}

@@ -8,9 +8,8 @@ describe('ValidationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ValidationComponent ]
-    })
-    .compileComponents();
+      declarations: [ValidationComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

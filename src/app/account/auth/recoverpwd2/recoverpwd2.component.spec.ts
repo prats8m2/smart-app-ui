@@ -8,9 +8,8 @@ describe('Recoverpwd2Component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ Recoverpwd2Component ]
-    })
-    .compileComponents();
+      declarations: [Recoverpwd2Component],
+    }).compileComponents();
   });
 
   beforeEach(() => {

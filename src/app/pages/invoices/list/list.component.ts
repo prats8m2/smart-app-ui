@@ -7,23 +7,25 @@ import { InvoiceList } from './list.model';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  styleUrls: ['./list.component.scss'],
 })
 
 /**
  * Invoices list component
  */
 export class ListComponent implements OnInit {
-
   // bread crumb items
   breadCrumbItems: Array<{}>;
 
   listData: InvoiceList[];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Invoices' }, { label: 'Invoice List', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Invoices' },
+      { label: 'Invoice List', active: true },
+    ];
 
     /**
      * fetches the data

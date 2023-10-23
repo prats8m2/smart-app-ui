@@ -8,10 +8,7 @@ import { TransactionComponent } from './transaction/transaction.component';
 
 @NgModule({
   declarations: [StatComponent, TransactionComponent],
-  imports: [
-    CommonModule,
-    NgbModalModule
-  ],
-  exports: [StatComponent, TransactionComponent]
+  imports: [CommonModule, NgbModalModule],
+  exports: [StatComponent, TransactionComponent],
 })
-export class WidgetModule { }
+export class WidgetModule {}

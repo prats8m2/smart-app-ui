@@ -8,9 +8,8 @@ describe('LightboxComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LightboxComponent ]
-    })
-    .compileComponents();
+      declarations: [LightboxComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

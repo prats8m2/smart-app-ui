@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-progressbar',
   templateUrl: './progressbar.component.html',
-  styleUrls: ['./progressbar.component.scss']
+  styleUrls: ['./progressbar.component.scss'],
 })
 
 /**
@@ -13,9 +13,12 @@ export class ProgressbarComponent implements OnInit {
   // bread crumb items
   breadCrumbItems: Array<{}>;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'UI Elements' }, { label: 'Progress Bars', active: true }];
+    this.breadCrumbItems = [
+      { label: 'UI Elements' },
+      { label: 'Progress Bars', active: true },
+    ];
   }
 }

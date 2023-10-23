@@ -8,14 +8,13 @@ import { Task } from './kanabn.model';
 @Component({
   selector: 'app-kanbanboard',
   templateUrl: './kanbanboard.component.html',
-  styleUrls: ['./kanbanboard.component.scss']
+  styleUrls: ['./kanbanboard.component.scss'],
 })
 
 /**
  * Kanbanboard Component
  */
 export class KanbanboardComponent implements OnInit {
-
   upcomingTasks: Task[];
   inprogressTasks: Task[];
   completedTasks: Task[];
@@ -23,11 +22,13 @@ export class KanbanboardComponent implements OnInit {
   // bread crumb items
   breadCrumbItems: Array<{}>;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Tasks' }, { label: 'Kanban Board', active: true }];
-
+    this.breadCrumbItems = [
+      { label: 'Tasks' },
+      { label: 'Kanban Board', active: true },
+    ];
 
     this._fetchData();
   }

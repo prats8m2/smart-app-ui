@@ -8,9 +8,8 @@ describe('ConfirmmailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConfirmmailComponent ]
-    })
-    .compileComponents();
+      declarations: [ConfirmmailComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -7,7 +7,7 @@ import { priceCandlestickChart, notificationData } from './data';
 @Component({
   selector: 'app-exchange',
   templateUrl: './exchange.component.html',
-  styleUrls: ['./exchange.component.scss']
+  styleUrls: ['./exchange.component.scss'],
 })
 export class ExchangeComponent implements OnInit {
   // breadcrumb items
@@ -17,13 +17,15 @@ export class ExchangeComponent implements OnInit {
 
   notificationData: Notification[];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
-    this.breadCrumbItems = [{ label: 'Crypto' }, { label: 'Exchange', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Crypto' },
+      { label: 'Exchange', active: true },
+    ];
 
     this.priceCandlestickChart = priceCandlestickChart;
     this.notificationData = notificationData;
   }
-
 }

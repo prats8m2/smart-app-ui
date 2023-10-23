@@ -6,22 +6,22 @@ import { UsergridComponent } from './usergrid/usergrid.component';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
-    {
-        path: 'list',
-        component: UserlistComponent
-    },
-    {
-        path: 'grid',
-        component: UsergridComponent
-    },
-    {
-        path: 'profile',
-        component: ProfileComponent
-    }
+  {
+    path: 'list',
+    component: UserlistComponent,
+  },
+  {
+    path: 'grid',
+    component: UsergridComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class ContactsRoutingModule { }
+export class ContactsRoutingModule {}

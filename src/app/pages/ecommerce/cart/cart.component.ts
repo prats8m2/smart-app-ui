@@ -7,26 +7,27 @@ import { cartData } from './data';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  styleUrls: ['./cart.component.scss'],
 })
 
 /**
  * Ecommerce Cart component
  */
 export class CartComponent implements OnInit {
-
   // bread crumb items
   breadCrumbItems: Array<{}>;
   value: number;
 
   cartData: Cart[];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-
     this.value = 4;
-    this.breadCrumbItems = [{ label: 'Ecommerce' }, { label: 'Cart', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Ecommerce' },
+      { label: 'Cart', active: true },
+    ];
 
     /**
      * fetches the data

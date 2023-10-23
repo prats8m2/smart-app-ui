@@ -8,9 +8,8 @@ describe('FontawesomeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ FontawesomeComponent ]
-    })
-    .compileComponents();
+      declarations: [FontawesomeComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

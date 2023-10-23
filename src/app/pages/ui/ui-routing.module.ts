@@ -22,86 +22,86 @@ import { LightboxComponent } from './lightbox/lightbox.component';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
 
 const routes: Routes = [
-    {
-        path: 'alerts',
-        component: AlertsComponent
-    },
-    {
-        path: 'buttons',
-        component: ButtonsComponent
-    },
-    {
-        path: 'cards',
-        component: CardsComponent
-    },
-    {
-        path: 'carousel',
-        component: CarouselComponent
-    },
-    {
-        path: 'dropdowns',
-        component: DropdownsComponent
-    },
-    {
-        path: 'grid',
-        component: GridComponent
-    },
-    {
-        path: 'images',
-        component: ImagesComponent
-    },
-    {
-        path: 'lightbox',
-        component:LightboxComponent
-    },
-    {
-        path: 'modals',
-        component: ModalsComponent
-    },
-    {
-        path: 'progressbar',
-        component: ProgressbarComponent
-    },
-    {
-        path: 'typography',
-        component: TypographyComponent
-    },
-    {
-        path: 'general',
-        component: GeneralComponent
-    },
-    {
-        path: 'colors',
-        component: ColorsComponent
-    },
-    {
-        path: 'video',
-        component: VideoComponent
-    },
-    {
-        path: 'tabs-accordions',
-        component: TabsComponent
-    },
-    {
-        path: 'sweet-alert',
-        component: SweetalertComponent
-    },
-    {
-        path: 'rangeslider',
-        component: RangesliderComponent
-    },
-    {
-        path: 'image-crop',
-        component: ImagecropperComponent
-    },
-    {
-        path: 'placeholder',
-        component: PlaceholderComponent
-    }
+  {
+    path: 'alerts',
+    component: AlertsComponent,
+  },
+  {
+    path: 'buttons',
+    component: ButtonsComponent,
+  },
+  {
+    path: 'cards',
+    component: CardsComponent,
+  },
+  {
+    path: 'carousel',
+    component: CarouselComponent,
+  },
+  {
+    path: 'dropdowns',
+    component: DropdownsComponent,
+  },
+  {
+    path: 'grid',
+    component: GridComponent,
+  },
+  {
+    path: 'images',
+    component: ImagesComponent,
+  },
+  {
+    path: 'lightbox',
+    component: LightboxComponent,
+  },
+  {
+    path: 'modals',
+    component: ModalsComponent,
+  },
+  {
+    path: 'progressbar',
+    component: ProgressbarComponent,
+  },
+  {
+    path: 'typography',
+    component: TypographyComponent,
+  },
+  {
+    path: 'general',
+    component: GeneralComponent,
+  },
+  {
+    path: 'colors',
+    component: ColorsComponent,
+  },
+  {
+    path: 'video',
+    component: VideoComponent,
+  },
+  {
+    path: 'tabs-accordions',
+    component: TabsComponent,
+  },
+  {
+    path: 'sweet-alert',
+    component: SweetalertComponent,
+  },
+  {
+    path: 'rangeslider',
+    component: RangesliderComponent,
+  },
+  {
+    path: 'image-crop',
+    component: ImagecropperComponent,
+  },
+  {
+    path: 'placeholder',
+    component: PlaceholderComponent,
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class UiRoutingModule { }
+export class UiRoutingModule {}

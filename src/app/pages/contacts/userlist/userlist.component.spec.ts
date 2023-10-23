@@ -8,9 +8,8 @@ describe('UserlistComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserlistComponent ]
-    })
-    .compileComponents();
+      declarations: [UserlistComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

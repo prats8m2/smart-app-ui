@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-general',
   templateUrl: './general.component.html',
-  styleUrls: ['./general.component.scss']
+  styleUrls: ['./general.component.scss'],
 })
 
 /**
@@ -20,9 +20,12 @@ export class GeneralComponent implements OnInit {
   alignpage1 = 1;
   alignpage2 = 2;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'UI Elements' }, { label: 'General', active: true }];
+    this.breadCrumbItems = [
+      { label: 'UI Elements' },
+      { label: 'General', active: true },
+    ];
   }
 }

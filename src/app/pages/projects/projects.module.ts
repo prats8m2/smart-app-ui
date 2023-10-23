@@ -6,7 +6,11 @@ import { UIModule } from '../../shared/ui/ui.module';
 
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { FormsModule } from '@angular/forms';
-import { NgbDropdownModule, NgbTooltipModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbDropdownModule,
+  NgbTooltipModule,
+  NgbDatepickerModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { NgApexchartsModule } from 'ng-apexcharts';
 
 import { ProjectgridComponent } from './projectgrid/projectgrid.component';
@@ -15,7 +19,12 @@ import { OverviewComponent } from './overview/overview.component';
 import { CreateComponent } from './create/create.component';
 
 @NgModule({
-  declarations: [ProjectgridComponent, ProjectlistComponent, OverviewComponent, CreateComponent],
+  declarations: [
+    ProjectgridComponent,
+    ProjectlistComponent,
+    OverviewComponent,
+    CreateComponent,
+  ],
   imports: [
     CommonModule,
     ProjectsRoutingModule,
@@ -25,8 +34,7 @@ import { CreateComponent } from './create/create.component';
     NgApexchartsModule,
     DropzoneModule,
     FormsModule,
-    NgbDatepickerModule
-  ]
+    NgbDatepickerModule,
+  ],
 })
-
-export class ProjectsModule { }
+export class ProjectsModule {}

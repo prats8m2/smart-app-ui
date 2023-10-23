@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NgbModalModule, NgbDropdownModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbModalModule,
+  NgbDropdownModule,
+  NgbPaginationModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import { InboxComponent } from './inbox/inbox.component';
@@ -13,7 +17,13 @@ import { BillingComponent } from './billing/billing.component';
 import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
-  declarations: [InboxComponent, EmailreadComponent, BasicComponent, BillingComponent, AlertComponent],
+  declarations: [
+    InboxComponent,
+    EmailreadComponent,
+    BasicComponent,
+    BillingComponent,
+    AlertComponent,
+  ],
   imports: [
     CommonModule,
     UIModule,
@@ -23,6 +33,6 @@ import { AlertComponent } from './alert/alert.component';
     NgbPaginationModule,
     CKEditorModule,
     FormsModule,
-  ]
+  ],
 })
-export class EmailModule { }
+export class EmailModule {}

@@ -1,7 +1,9 @@
 <div class="container-fluid">
-
   <!-- page title -->
-  <app-page-title title="Cart" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <app-page-title
+    title="Cart"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
 
   <div class="row">
     <div class="col-xl-8">
@@ -21,20 +23,39 @@
               <tbody>
                 <tr *ngFor="let product of cartData">
                   <td>
-                    <img src="{{ product.image }}" alt="product-img" title="product-img" class="avatar-md" />
+                    <img
+                      src="{{ product.image }}"
+                      alt="product-img"
+                      title="product-img"
+                      class="avatar-md"
+                    />
                   </td>
                   <td>
-                    <h5 class="font-size-14 text-truncate"><a routerLink="/ecommerce/product-detail"
-                        class="text-dark">{{ product.name }}</a></h5>
-                    <p class="mb-0">Color : <span class="fw-medium">{{ product.color }}</span></p>
+                    <h5 class="font-size-14 text-truncate">
+                      <a
+                        routerLink="/ecommerce/product-detail"
+                        class="text-dark"
+                        >{{ product.name }}</a
+                      >
+                    </h5>
+                    <p class="mb-0">
+                      Color : <span class="fw-medium">{{ product.color }}</span>
+                    </p>
                   </td>
                   <td>
                     {{ product.price }}
                   </td>
                   <td>
-                    <div style="width: 120px;">
-                      <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                        <input type="number" [(ngModel)]="product.quantity" name="demo_vertical" class="form-control">
+                    <div style="width: 120px">
+                      <div
+                        class="input-group bootstrap-touchspin bootstrap-touchspin-injected"
+                      >
+                        <input
+                          type="number"
+                          [(ngModel)]="product.quantity"
+                          name="demo_vertical"
+                          class="form-control"
+                        />
                       </div>
                     </div>
                   </td>
@@ -42,8 +63,12 @@
                     {{ product.total }}
                   </td>
                   <td>
-                    <a href="javascript:void(0);" class="action-icon text-danger"> <i
-                        class="mdi mdi-trash-can font-size-18"></i></a>
+                    <a
+                      href="javascript:void(0);"
+                      class="action-icon text-danger"
+                    >
+                      <i class="mdi mdi-trash-can font-size-18"></i
+                    ></a>
                   </td>
                 </tr>
               </tbody>
@@ -52,15 +77,20 @@
           <div class="row mt-4">
             <div class="col-sm-6">
               <a routerLink="/ecommerce/products" class="btn btn-secondary">
-                <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
-            </div> <!-- end col -->
+                <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping
+              </a>
+            </div>
+            <!-- end col -->
             <div class="col-sm-6">
               <div class="text-sm-end mt-2 mt-sm-0">
                 <a routerLink="/ecommerce/checkout" class="btn btn-success">
-                  <i class="mdi mdi-cart-arrow-right me-1"></i> Checkout </a>
+                  <i class="mdi mdi-cart-arrow-right me-1"></i> Checkout
+                </a>
               </div>
-            </div> <!-- end col -->
-          </div> <!-- end row-->
+            </div>
+            <!-- end col -->
+          </div>
+          <!-- end row-->
         </div>
       </div>
     </div>
@@ -127,7 +157,7 @@
                   <td>$ 1,857</td>
                 </tr>
                 <tr>
-                  <td>Discount : </td>
+                  <td>Discount :</td>
                   <td>- $ 157</td>
                 </tr>
                 <tr>
@@ -135,7 +165,7 @@
                   <td>$ 25</td>
                 </tr>
                 <tr>
-                  <td>Estimated Tax : </td>
+                  <td>Estimated Tax :</td>
                   <td>$ 19.22</td>
                 </tr>
                 <tr>
@@ -152,5 +182,5 @@
     </div>
   </div>
   <!-- end row -->
-
-</div> <!-- container-fluid -->
+</div>
+<!-- container-fluid -->

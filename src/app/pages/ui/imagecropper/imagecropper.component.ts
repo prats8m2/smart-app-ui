@@ -1,20 +1,23 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { Dimensions, ImageCroppedEvent, ImageTransform } from 'ngx-image-cropper';
+import {
+  Dimensions,
+  ImageCroppedEvent,
+  ImageTransform,
+} from 'ngx-image-cropper';
 import { ImageCropperComponent } from 'ngx-image-cropper';
 
 @Component({
   selector: 'app-imagecropper',
   templateUrl: './imagecropper.component.html',
-  styleUrls: ['./imagecropper.component.scss']
+  styleUrls: ['./imagecropper.component.scss'],
 })
 
 /**
  * UI-Image-cropper component
  */
 export class ImagecropperComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   // bread crumb items
   breadCrumbItems: Array<{}>;
@@ -27,10 +30,14 @@ export class ImagecropperComponent implements OnInit {
   rotation = 0;
   scale = 1;
 
-  @ViewChild(ImageCropperComponent, { static: true }) imageCropper: ImageCropperComponent;
+  @ViewChild(ImageCropperComponent, { static: true })
+  imageCropper: ImageCropperComponent;
 
   ngOnInit(): void {
-    this.breadCrumbItems = [{ label: 'UI' }, { label: 'Image Crop', active: true }];
+    this.breadCrumbItems = [
+      { label: 'UI' },
+      { label: 'Image Crop', active: true },
+    ];
   }
 
   /**
@@ -63,7 +70,7 @@ export class ImagecropperComponent implements OnInit {
     this.transform = {
       ...this.transform,
       flipH: flippedV,
-      flipV: flippedH
+      flipV: flippedH,
     };
   }
   /**
@@ -72,7 +79,7 @@ export class ImagecropperComponent implements OnInit {
   flipHorizontal() {
     this.transform = {
       ...this.transform,
-      flipH: !this.transform.flipH
+      flipH: !this.transform.flipH,
     };
   }
 
@@ -82,30 +89,30 @@ export class ImagecropperComponent implements OnInit {
   flipVertical() {
     this.transform = {
       ...this.transform,
-      flipV: !this.transform.flipV
+      flipV: !this.transform.flipV,
     };
   }
 
   updateRotation() {
     this.transform = {
       ...this.transform,
-      rotate: this.rotation
+      rotate: this.rotation,
     };
   }
 
   zoomOut() {
-    this.scale -= .1;
+    this.scale -= 0.1;
     this.transform = {
       ...this.transform,
-      scale: this.scale
+      scale: this.scale,
     };
   }
 
   zoomIn() {
-    this.scale += .1;
+    this.scale += 0.1;
     this.transform = {
       ...this.transform,
-      scale: this.scale
+      scale: this.scale,
     };
   }
 }

@@ -8,9 +8,8 @@ describe('BloggridComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BloggridComponent ]
-    })
-    .compileComponents();
+      declarations: [BloggridComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

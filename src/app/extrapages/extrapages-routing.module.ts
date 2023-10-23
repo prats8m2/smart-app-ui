@@ -14,66 +14,69 @@ import { Verification2Component } from './verification2/verification2.component'
 import { SteptwoverificationComponent } from './steptwoverification/steptwoverification.component';
 import { Steptwoverification2Component } from './steptwoverification2/steptwoverification2.component';
 import { ComingsoonComponent } from './comingsoon/comingsoon.component';
+import { PagePermissionDeniedComponent } from './page-permission-denied/page-permission-denied.component';
 
 const routes: Routes = [
-    {
-        path: 'maintenance',
-        component: MaintenanceComponent
-    },
-    {
-        path: 'coming-soon',
-        component: ComingsoonComponent
-    },
-    {
-        path: '404',
-        component: Page404Component
-    },
-    {
-        path: '500',
-        component: Page500Component
-    },
-    {
-        path: 'login-2',
-        component: Login2Component
-    },
-    {
-        path: 'lock-screen-1',
-        component: LockscreenComponent
-    },
-    {
-        path: 'lock-screen-2',
-        component: Lockscreen2Component
-    },
-    {
-        path: 'confirm-mail',
-        component: ConfirmmailComponent
-    },
-    {
-        path: 'confirm-mail-2',
-        component: Confirmmail2Component
-    },
-    {
-        path: 'email-verification',
-        component: VerificationComponent
-    },
-    {
-        path: 'email-verification-2',
-        component: Verification2Component
-    },
-    {
-        path: 'two-step-verification',
-        component: SteptwoverificationComponent
-    },
-    {
-        path: 'two-step-verification-2',
-        component: Steptwoverification2Component
-    },
+  {
+    path: 'maintenance',
+    component: MaintenanceComponent,
+  },
+  {
+    path: 'coming-soon',
+    component: ComingsoonComponent,
+  },
+  {
+    path: '404',
+    component: Page404Component,
+  },
+  {
+    path: '403',
+    component: PagePermissionDeniedComponent,
+  },
+  {
+    path: '500',
+    component: Page500Component,
+  },
+  {
+    path: 'login-2',
+    component: Login2Component,
+  },
+  {
+    path: 'lock-screen-1',
+    component: LockscreenComponent,
+  },
+  {
+    path: 'lock-screen-2',
+    component: Lockscreen2Component,
+  },
+  {
+    path: 'confirm-mail',
+    component: ConfirmmailComponent,
+  },
+  {
+    path: 'confirm-mail-2',
+    component: Confirmmail2Component,
+  },
+  {
+    path: 'email-verification',
+    component: VerificationComponent,
+  },
+  {
+    path: 'email-verification-2',
+    component: Verification2Component,
+  },
+  {
+    path: 'two-step-verification',
+    component: SteptwoverificationComponent,
+  },
+  {
+    path: 'two-step-verification-2',
+    component: Steptwoverification2Component,
+  },
 ];
 
-
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-
-export class ExtrapagesRoutingModule { }
+export class ExtrapagesRoutingModule {}

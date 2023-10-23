@@ -2,7 +2,11 @@ import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { CalendarOptions, EventClickArg, EventApi } from '@fullcalendar/angular';
+import {
+  CalendarOptions,
+  EventClickArg,
+  EventApi,
+} from '@fullcalendar/angular';
 import { category, calendarEvents, createEventId } from './data';
 
 import Swal from 'sweetalert2';
@@ -10,10 +14,9 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.scss']
+  styleUrls: ['./calendar.component.scss'],
 })
 export class CalendarComponent implements OnInit {
-
   // bread crumb items
   breadCrumbItems: Array<{}>;
 
@@ -33,10 +36,10 @@ export class CalendarComponent implements OnInit {
     headerToolbar: {
       left: 'dayGridMonth,dayGridWeek,dayGridDay',
       center: 'title',
-      right: 'prevYear,prev,next,nextYear'
+      right: 'prevYear,prev,next,nextYear',
     },
-    initialView: "dayGridMonth",
-    themeSystem: "bootstrap",
+    initialView: 'dayGridMonth',
+    themeSystem: 'bootstrap',
     initialEvents: calendarEvents,
     weekends: true,
     editable: true,
@@ -46,17 +49,21 @@ export class CalendarComponent implements OnInit {
     dateClick: this.openModal.bind(this),
     eventClick: this.handleEventClick.bind(this),
     eventsSet: this.handleEvents.bind(this),
-    eventTimeFormat: { // like '14:30:00'
+    eventTimeFormat: {
+      // like '14:30:00'
       hour: '2-digit',
       minute: '2-digit',
       meridiem: false,
-      hour12: true
-    }
+      hour12: true,
+    },
   };
   currentEvents: EventApi[] = [];
 
   ngOnInit(): void {
-    this.breadCrumbItems = [{ label: 'Skote' }, { label: 'Calendar', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Skote' },
+      { label: 'Calendar', active: true },
+    ];
 
     this.formData = this.formBuilder.group({
       title: ['', [Validators.required]],
@@ -92,7 +99,7 @@ export class CalendarComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) {}
 
   get form() {
@@ -105,13 +112,13 @@ export class CalendarComponent implements OnInit {
   confirm() {
     Swal.fire({
       title: 'Are you sure?',
-      text: 'You won\'t be able to revert this!',
+      text: "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#34c38f',
       cancelButtonColor: '#f46a6a',
       confirmButtonText: 'Yes, delete it!',
-    }).then((result) => {
+    }).then(result => {
       if (result.value) {
         this.deleteEventData();
         Swal.fire('Deleted!', 'Event has been deleted.', 'success');
@@ -143,9 +150,9 @@ export class CalendarComponent implements OnInit {
   editEventSave() {
     const editTitle = this.formEditData.get('editTitle').value;
     const editCategory = this.formEditData.get('editCategory').value;
-    
+
     const editId = this.calendarEvents.findIndex(
-      (x) => x.id + '' === this.editEvent.id + ''
+      x => x.id + '' === this.editEvent.id + '',
     );
 
     this.editEvent.setProp('title', editTitle);
@@ -198,7 +205,7 @@ export class CalendarComponent implements OnInit {
         title,
         start: this.newEventDate.date,
         end: this.newEventDate.date,
-        className: className + ' ' + 'text-white'
+        className: className + ' ' + 'text-white',
       });
       this.position();
       this.formData = this.formBuilder.group({
@@ -221,6 +228,4 @@ export class CalendarComponent implements OnInit {
     // form submit
     this.submitted = false;
   }
-
-
 }

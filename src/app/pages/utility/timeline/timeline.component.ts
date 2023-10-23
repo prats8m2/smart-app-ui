@@ -4,7 +4,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
-  styleUrls: ['./timeline.component.scss']
+  styleUrls: ['./timeline.component.scss'],
 })
 
 /**
@@ -19,18 +19,24 @@ export class TimelineComponent implements OnInit {
     loop: false,
     margin: 0,
     nav: true,
-    navText: ["<i class='mdi mdi-chevron-left'></i>", "<i class='mdi mdi-chevron-right'></i>"],
+    navText: [
+      "<i class='mdi mdi-chevron-left'></i>",
+      "<i class='mdi mdi-chevron-right'></i>",
+    ],
     dots: false,
     responsive: {
       680: {
-        items: 4
+        items: 4,
       },
-    }
-  }
+    },
+  };
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Utility' }, { label: 'Timeline', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Utility' },
+      { label: 'Timeline', active: true },
+    ];
   }
 }

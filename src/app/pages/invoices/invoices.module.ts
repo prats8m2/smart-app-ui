@@ -10,11 +10,6 @@ import { DetailComponent } from './detail/detail.component';
 
 @NgModule({
   declarations: [ListComponent, DetailComponent],
-  imports: [
-    CommonModule,
-    InvoicesRoutingModule,
-    UIModule,
-    NgbTooltipModule
-  ]
+  imports: [CommonModule, InvoicesRoutingModule, UIModule, NgbTooltipModule],
 })
-export class InvoicesModule { }
+export class InvoicesModule {}

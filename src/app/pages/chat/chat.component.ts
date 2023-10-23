@@ -11,7 +11,6 @@ import { chatData, chatMessagesData } from './data';
   styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit, AfterViewInit {
-
   @ViewChild('scrollEle') scrollEle;
   @ViewChild('scrollRef') scrollRef;
 
@@ -30,11 +29,13 @@ export class ChatComponent implements OnInit, AfterViewInit {
 
   usermessage: string;
 
-  constructor(public formBuilder: FormBuilder) {
-  }
+  constructor(public formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Skote' }, { label: 'Chat', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Skote' },
+      { label: 'Chat', active: true },
+    ];
 
     this.formData = this.formBuilder.group({
       message: ['', [Validators.required]],
@@ -80,9 +81,8 @@ export class ChatComponent implements OnInit, AfterViewInit {
     this.chatMessagesData.push({
       name: this.username,
       message: this.usermessage,
-      time: currentDate.getHours() + ':' + currentDate.getMinutes()
+      time: currentDate.getHours() + ':' + currentDate.getMinutes(),
     });
-
   }
 
   /**
@@ -97,17 +97,16 @@ export class ChatComponent implements OnInit, AfterViewInit {
         align: 'right',
         name: 'Henry Wells',
         message,
-        time: currentDate.getHours() + ':' + currentDate.getMinutes()
+        time: currentDate.getHours() + ':' + currentDate.getMinutes(),
       });
       this.onListScroll();
 
       // Set Form Data Reset
       this.formData = this.formBuilder.group({
-        message: null
+        message: null,
       });
     }
 
     this.chatSubmit = true;
   }
-
 }

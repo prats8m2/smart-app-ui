@@ -11,42 +11,42 @@ import { CustomersComponent } from './customers/customers.component';
 import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
-    {
-        path: 'products',
-        component: ProductsComponent
-    },
-    {
-        path: 'product-detail/:id',
-        component: ProductdetailComponent
-    },
-    {
-        path: 'shops',
-        component: ShopsComponent
-    },
-    {
-        path: 'checkout',
-        component: CheckoutComponent
-    },
-    {
-        path: 'cart',
-        component: CartComponent
-    },
-    {
-        path: 'add-product',
-        component: AddproductComponent
-    },
-    {
-        path: 'customers',
-        component: CustomersComponent
-    },
-    {
-        path: 'orders',
-        component: OrdersComponent
-    }
+  {
+    path: 'products',
+    component: ProductsComponent,
+  },
+  {
+    path: 'product-detail/:id',
+    component: ProductdetailComponent,
+  },
+  {
+    path: 'shops',
+    component: ShopsComponent,
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
+  },
+  {
+    path: 'add-product',
+    component: AddproductComponent,
+  },
+  {
+    path: 'customers',
+    component: CustomersComponent,
+  },
+  {
+    path: 'orders',
+    component: OrdersComponent,
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
 export class EcommerceRoutingModule {}

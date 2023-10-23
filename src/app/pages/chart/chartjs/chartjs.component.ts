@@ -2,19 +2,25 @@ import { Component, OnInit } from '@angular/core';
 
 import { ChartType } from './chartjs.model';
 
-import { lineAreaChart, lineBarChart, pieChart, donutChart, radarChart, polarChart } from './data';
+import {
+  lineAreaChart,
+  lineBarChart,
+  pieChart,
+  donutChart,
+  radarChart,
+  polarChart,
+} from './data';
 
 @Component({
   selector: 'app-chartjs',
   templateUrl: './chartjs.component.html',
-  styleUrls: ['./chartjs.component.scss']
+  styleUrls: ['./chartjs.component.scss'],
 })
 
 /**
  * chartjs-chart component
  */
 export class ChartjsComponent implements OnInit {
-
   // bread crumb items
   breadCrumbItems: Array<{}>;
 
@@ -33,14 +39,17 @@ export class ChartjsComponent implements OnInit {
   // polarChart
   polarChart: ChartType;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Charts' }, { label: 'Chartjs chart', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Charts' },
+      { label: 'Chartjs chart', active: true },
+    ];
 
-   /**
-    * Fetches the data
-    */
+    /**
+     * Fetches the data
+     */
     this._fetchData();
   }
 
@@ -62,5 +71,4 @@ export class ChartjsComponent implements OnInit {
     // Financial Report
     this.polarChart = polarChart;
   }
-
 }

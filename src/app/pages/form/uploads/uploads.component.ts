@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-uploads',
   templateUrl: './uploads.component.html',
-  styleUrls: ['./uploads.component.scss']
+  styleUrls: ['./uploads.component.scss'],
 })
 
 /**
@@ -13,9 +13,12 @@ export class UploadsComponent implements OnInit {
   // bread crumb items
   breadCrumbItems: Array<{}>;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Forms' }, { label: 'Form File Upload', active: true }];
+    this.breadCrumbItems = [
+      { label: 'Forms' },
+      { label: 'Form File Upload', active: true },
+    ];
   }
 }

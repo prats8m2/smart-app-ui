@@ -4,16 +4,15 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 @Component({
   selector: 'app-lockscreen2',
   templateUrl: './lockscreen2.component.html',
-  styleUrls: ['./lockscreen2.component.scss']
+  styleUrls: ['./lockscreen2.component.scss'],
 })
 export class Lockscreen2Component implements OnInit {
-
-  constructor() { }
+  constructor() {}
   // set the currenr year
   year: number = new Date().getFullYear();
 
   ngOnInit(): void {
-    document.body.classList.add('auth-body-bg')
+    document.body.classList.add('auth-body-bg');
   }
 
   carouselOption: OwlOptions = {
@@ -24,8 +23,8 @@ export class Lockscreen2Component implements OnInit {
     dots: true,
     responsive: {
       680: {
-        items: 1
+        items: 1,
       },
-    }
-  }
+    },
+  };
 }

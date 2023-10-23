@@ -8,9 +8,8 @@ describe('Lockscreen2Component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ Lockscreen2Component ]
-    })
-    .compileComponents();
+      declarations: [Lockscreen2Component],
+    }).compileComponents();
   });
 
   beforeEach(() => {

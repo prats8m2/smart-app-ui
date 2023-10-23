@@ -8,9 +8,8 @@ describe('MaterialdesignComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ MaterialdesignComponent ]
-    })
-    .compileComponents();
+      declarations: [MaterialdesignComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

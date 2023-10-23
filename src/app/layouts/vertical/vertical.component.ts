@@ -3,24 +3,26 @@ import { Router, NavigationEnd } from '@angular/router';
 
 import { EventService } from '../../core/services/event.service';
 
-import { SIDEBAR_TYPE } from "../layouts.model";
+import { SIDEBAR_TYPE } from '../layouts.model';
 
 @Component({
   selector: 'app-vertical',
   templateUrl: './vertical.component.html',
-  styleUrls: ['./vertical.component.scss']
+  styleUrls: ['./vertical.component.scss'],
 })
 
 /**
  * Vertical component
  */
 export class VerticalComponent implements OnInit, AfterViewInit {
-
   isCondensed = false;
   sidebartype: string;
 
-  constructor(private router: Router, private eventService: EventService) {
-    this.router.events.forEach((event) => {
+  constructor(
+    private router: Router,
+    private eventService: EventService,
+  ) {
+    this.router.events.forEach(event => {
       if (event instanceof NavigationEnd) {
         document.body.classList.remove('sidebar-enable');
       }
@@ -30,7 +32,7 @@ export class VerticalComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.sidebartype = SIDEBAR_TYPE;
     // listen to event and change the layout, theme, etc
-    this.eventService.subscribe('changeSidebartype', (layout) => {
+    this.eventService.subscribe('changeSidebartype', layout => {
       this.sidebartype = layout;
       this.changeSidebar(this.sidebartype);
     });
@@ -38,16 +40,16 @@ export class VerticalComponent implements OnInit, AfterViewInit {
     this.changeSidebar(this.sidebartype);
 
     document.body.setAttribute('data-layout', 'vertical');
-
   }
 
   isMobile() {
     const ua = navigator.userAgent;
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(ua);
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(
+      ua,
+    );
   }
 
-  ngAfterViewInit() {
-  }
+  ngAfterViewInit() {}
 
   /**
    * on settings button clicked from topbar
@@ -58,7 +60,7 @@ export class VerticalComponent implements OnInit, AfterViewInit {
 
   changeSidebar(value) {
     switch (value) {
-      case "light":
+      case 'light':
         document.body.setAttribute('data-sidebar', 'light');
         document.body.setAttribute('data-topbar', 'dark');
         document.body.removeAttribute('data-sidebar-size');
@@ -67,7 +69,7 @@ export class VerticalComponent implements OnInit, AfterViewInit {
         document.body.classList.remove('vertical-collpsed');
         document.body.removeAttribute('data-layout-scrollable');
         break;
-      case "compact":
+      case 'compact':
         document.body.setAttribute('data-sidebar-size', 'small');
         document.body.setAttribute('data-sidebar', 'dark');
         document.body.removeAttribute('data-topbar');
@@ -77,7 +79,7 @@ export class VerticalComponent implements OnInit, AfterViewInit {
         document.body.classList.remove('vertical-collpsed');
         document.body.removeAttribute('data-layout-scrollable');
         break;
-      case "dark":
+      case 'dark':
         document.body.setAttribute('data-sidebar', 'dark');
         document.body.removeAttribute('data-topbar');
         document.body.removeAttribute('data-layout-size');
@@ -87,15 +89,15 @@ export class VerticalComponent implements OnInit, AfterViewInit {
         document.body.classList.remove('vertical-collpsed');
         document.body.removeAttribute('data-layout-scrollable');
         break;
-      case "icon":
+      case 'icon':
         document.body.classList.add('vertical-collpsed');
         document.body.setAttribute('data-sidebar', 'dark');
         document.body.removeAttribute('data-layout-size');
-        document.body.setAttribute('data-keep-enlarged',"true");
+        document.body.setAttribute('data-keep-enlarged', 'true');
         document.body.removeAttribute('data-topbar');
         document.body.removeAttribute('data-layout-scrollable');
         break;
-      case "colored":
+      case 'colored':
         document.body.classList.remove('sidebar-enable');
         document.body.classList.remove('vertical-collpsed');
         document.body.setAttribute('data-sidebar', 'colored');
@@ -123,6 +125,4 @@ export class VerticalComponent implements OnInit, AfterViewInit {
       document.body.classList.remove('vertical-collpsed');
     }
   }
-
-
 }
