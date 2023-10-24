@@ -5,6 +5,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../../form/validation/validation.mustmatch';
 import { UserService } from '../service/user/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { GlobalService } from 'src/app/core/services/global.service';
+import { ROUTING_PERMISSION } from 'src/app/constants/permission';
+import { URL_ROUTES } from 'src/app/constants/routing';
 
 @Component({
   selector: 'app-add-user',
@@ -61,7 +64,8 @@ export class AddUserComponent implements OnInit {
     private eventService: EventService,
     public formBuilder: FormBuilder,
     public userService: UserService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private globalService: GlobalService
   ) {}
 
   ngOnInit() {
@@ -117,12 +121,16 @@ export class AddUserComponent implements OnInit {
   }
 
   onSave() {
-    let addUserStatus = this.userService.addUser(this.userForm);
-    if (addUserStatus) {
-      console.log('user added');
-    } else {
-      console.log('error');
-    }
+    this.userService.addUser(this.userForm).then(res => {
+      if (res.status) {
+        this.globalService.checkForPermissionAndRoute(
+          ROUTING_PERMISSION.LIST_USER,
+          URL_ROUTES.LIST_USER
+        );
+      } else {
+        console.log('error');
+      }
+    });
   }
 
   onReset() {
@@ -132,7 +140,10 @@ export class AddUserComponent implements OnInit {
   onUpdate() {
     this.userService.updateUser(this.userForm).then(res => {
       if (res.status) {
-        console.log('user updated');
+        this.globalService.checkForPermissionAndRoute(
+          ROUTING_PERMISSION.LIST_USER,
+          URL_ROUTES.LIST_USER
+        );
       } else {
         console.log('error');
       }

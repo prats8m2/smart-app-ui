@@ -17,4 +17,16 @@ export const URL_ROUTES = {
 
   //access denied page
   ACCESS_DENIED: '/denied',
+
+  //staff
+  ADD_STAFF: '/add-staff',
+  EDIT_STAFF: '/edit-staff',
+  VIEW_STAFF: '/view-staff/',
+  LIST_STAFF: '/list-staff',
+
+  //device
+  ADD_DEVICE: '/add-device',
+  EDIT_DEVICE: '/edit-device',
+  VIEW_DEVICE: '/view-device/',
+  LIST_DEVICE: '/list-device',
 };

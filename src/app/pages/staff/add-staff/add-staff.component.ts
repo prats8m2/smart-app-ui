@@ -5,6 +5,9 @@ import { UserService } from '../../dashboards/service/user/user.service';
 import { SiteService } from '../../site/service/site.service';
 import { IParams } from 'src/app/core/interface/params';
 import { RoleService } from '../../role/services/role.service';
+import { StaffService } from '../services/staff.service';
+import { URL_ROUTES } from 'src/app/constants/routing';
+import { GlobalService } from 'src/app/core/services/global.service';
 
 @Component({
   selector: 'app-add-staff',
@@ -17,6 +20,7 @@ export class AddStaffComponent implements OnInit {
   accountList: any = [];
   siteList: any = [];
   roleList: any = [];
+  userRole: string;
 
   public staffForm: FormGroup = this.formBuilder.group({
     id: [''],
@@ -52,11 +56,6 @@ export class AddStaffComponent implements OnInit {
     limit: 10,
     pageNumber: 1,
   };
-  siteParams: IParams = {
-    limit: 10,
-    pageNumber: 1,
-    accountId: 7,
-  };
 
   constructor(
     public formBuilder: FormBuilder,
@@ -64,43 +63,33 @@ export class AddStaffComponent implements OnInit {
     public userService: UserService,
     private siteService: SiteService,
     private roleService: RoleService,
-    private router: Router
+    private router: Router,
+    private staffService: StaffService,
+    private globalService: GlobalService
   ) {}
 
   ngOnInit(): void {
+    this.userRole = this.globalService.getUserRole('userRole');
     this.activatedRoute.queryParams.subscribe(params => {
       if (params.edit) {
         this.isEditScreen = true;
-        let siteId = params['id'];
+        let staffId = params['id'];
         this.staffForm.value.id = params['id'];
-        this.siteService.viewSite(siteId).then(res => {
-          if (res.status === true) {
+        this.staffService.viewStaff(staffId).then(res => {
+          if (res.status == true) {
             this.staffForm.patchValue(res.data);
+            this.staffForm.get('phone').setValue(res.data.mobile);
+            this.staffForm.get('account').setValue(res.data.account.name);
+            this.staffForm.get('role').setValue(res.data.role.name);
+
+            console.log(this.staffForm.value);
           }
         });
       } else {
         this.staffForm.reset();
         this.userService.listAccounts(this.accountParams).then(res => {
           if (res.data) {
-            res.data.accounts.forEach(element => {
-              this.accountList.push(element);
-            });
-          }
-        });
-
-        this.siteService.listSite(this.siteParams).then(res => {
-          if (res.data) {
-            res.data.sites.forEach(element => {
-              this.siteList.push(element);
-            });
-          }
-        });
-
-        this.roleService.listRole(this.siteParams).then(res => {
-          if (res.data) {
-            res.data.roles.forEach(element => {
-              this.roleList.push(element);
-            });
+            this.accountList = [...res.data.accounts];
           }
         });
       }
@@ -133,9 +122,42 @@ export class AddStaffComponent implements OnInit {
   }
 
   onSave() {
-    console.log(this.staffForm.value);
+    this.staffService.addStaff(this.staffForm).then(res => {
+      if (res.status) {
+        console.log('Staff saved successfully');
+        this.router.navigateByUrl(URL_ROUTES.LIST_STAFF);
+      } else {
+        console.log('error');
+      }
+    });
   }
   onUpdate() {
     console.log(this.staffForm.value);
+
+    this.staffService.updateStaff(this.staffForm).then(res => {
+      if (res.status) {
+        console.log('staff updated');
+      } else {
+        console.log('error');
+      }
+    });
+  }
+
+  changeAccountValue(event: any) {
+    let param: IParams = {
+      limit: 10,
+      pageNumber: 1,
+      accountId: event,
+    };
+
+    this.siteService.listSite(param).then(res => {
+      this.siteList = [...res.data.sites];
+    });
+
+    this.roleService.listRole(param).then(res => {
+      if (res.data) {
+        this.roleList = [...res.data.roles];
+      }
+    });
   }
 }

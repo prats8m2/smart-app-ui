@@ -46,6 +46,11 @@ import { FilemanagerComponent } from './filemanager/filemanager.component';
 import { SiteModule } from './site/site.module';
 import { RoleModule } from './role/role/role.module';
 import { StaffModule } from './staff/staff.module';
+import { DeviceModule } from './device/device.module';
+import { RoomModule } from './room/room.module';
+import { MenuModule } from './menu/menu.module';
+import { TableModule } from './table/table.module';
+import { ProductModule } from './product/product.module';
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -68,6 +73,11 @@ FullCalendarModule.registerPlugins([
     SiteModule,
     StaffModule,
     RoleModule,
+    DeviceModule,
+    RoomModule,
+    MenuModule,
+    TableModule,
+    ProductModule,
     CryptoModule,
     EcommerceModule,
     EmailModule,

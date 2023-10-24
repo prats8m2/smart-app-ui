@@ -55,15 +55,15 @@ export class SidebarComponent implements OnInit, OnChanges {
     const parentIds: number[] = [1];
     this.menuItems = this.globalService.getUserRole('permissions');
 
-    let menuItemsIds: any[] = [];
+    let menuItemsNames: any[] = [];
     this.menuItems.forEach((item: any) => {
-      menuItemsIds.push(item.id);
+      menuItemsNames.push(item.name);
     });
 
     for (const item of MENU) {
       if (item.subItems) {
         for (const subItem of item.subItems) {
-          if (menuItemsIds.includes(subItem.id)) {
+          if (menuItemsNames.includes(subItem.value)) {
             parentIds.push(item.id);
             break;
           }

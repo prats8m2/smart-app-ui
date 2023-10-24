@@ -59,13 +59,15 @@ export class AddSiteComponent implements OnInit {
         this.siteService.viewSite(siteId).then(res => {
           if (res.status === true) {
             this.siteForm.patchValue(res.data);
-            this.siteForm.get('siteName').patchValue(res.data.name);
+            this.siteForm.get('siteName').patchValue(res.data.id);
             this.siteForm.get('account').setValue(res.data.account.id);
             this.accountList.push(res.data.account);
             let wifiDetails = res.data.wifi;
             wifiDetails.forEach(element => {
               this.formData.push(this.formBuilder.group(element));
             });
+
+            console.log(this.siteForm.value);
           }
         });
       } else {

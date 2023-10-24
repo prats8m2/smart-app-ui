@@ -48,7 +48,6 @@ export class ListUserComponent implements OnInit {
       ROUTING_PERMISSION.VIEW_USER,
       URL_ROUTES.VIEW_USER + id
     );
-    this.router.navigateByUrl(URL_ROUTES.VIEW_USER + id);
   }
 
   routeToAddUser() {

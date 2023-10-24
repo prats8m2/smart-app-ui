@@ -1,1 +1,132 @@
-<p>list-staff works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div
+        class="page-title-box d-flex align-items-center justify-content-between"
+      >
+        <h4 class="mb-0 font-size-18">Staff</h4>
+        <div class="page-title-right">
+          <div class="col-md-12 d-flex justify-content-end">
+            <input
+              type="button"
+              class="btn btn-success mt-3 mt-lg-0 ml-auto"
+              value="Add Staff"
+              (click)="routeToAddStaff()"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card user-table-card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-2">
+                <h4 class="card-title">List of staff(s)</h4>
+              </div>
+              <div class="col-md-10">
+                <div class="row justify-content-end">
+                  <div class="col-md-3 page-title-right">
+                    <div class="col-md-4 mt-2">
+                      <label for="account">Account</label>
+                    </div>
+                    <div class="col-md-8 mb-3">
+                      <select
+                        class="form-control form-select"
+                        id="account"
+                        placeholder="Account"
+                        (change)="changeAccountValue($event.target.value)"
+                      >
+                        <option
+                          *ngFor="let account of accountList"
+                          [value]="account.id"
+                        >
+                          {{ account.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3 page-title-right">
+                    <div class="col-md-4 mt-2">
+                      <label for="role">Role</label>
+                    </div>
+                    <div class="col-md-8 mb-3">
+                      <select
+                        class="form-control form-select"
+                        id="role"
+                        placeholder="Role"
+                        (change)="changeRoleValue($event.target.value)"
+                      >
+                        <option *ngFor="let role of roleList" [value]="role.id">
+                          {{ role.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="table-responsive user-table">
+              <table class="table mb-0">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let staff of staffList; let i = index">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td (click)="viewStaff(staff.id)" class="show-cursor">
+                      {{ staff.firstName }}
+                    </td>
+                    <td>{{ staff.lastName }}</td>
+                    <td>{{ staff.username }}</td>
+                    <td>{{ staff.email }}</td>
+                    <td>
+                      <div ngbDropdown placement="bottom-left">
+                        <i
+                          class="mdi mdi-dots-vertical dropdown-toggle show-cursor"
+                          ngbDropdownToggle
+                          data-toggle="dropdown"
+                          aria-expanded="true"
+                        ></i>
+                        <div
+                          class="dropdown-menu dropdown-menu-end"
+                          ngbDropdownMenu
+                        >
+                          <a
+                            class="dropdown-item"
+                            href="javascript: void(0);"
+                            (click)="editStaff(staff.id)"
+                            ><i class="mdi mdi-account-edit"></i> Edit</a
+                          >
+
+                          <a
+                            class="dropdown-item"
+                            href="javascript: void(0);"
+                            (click)="deleteStaff(staff.id)"
+                            ><i class="mdi mdi-delete"></i> Delete</a
+                          >
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

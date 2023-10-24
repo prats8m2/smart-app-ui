@@ -25,4 +25,24 @@ export const ROLE = {
 
 export const STAFF = {
   LIST_STAFF: '/staff/list',
+  ADD_STAFF: '/staff/add',
+  VIEW_STAFF: '/staff/get/',
+  DELETE_STAFF: '/staff/delete/',
+  UPDATE_STAFF: '/staff/update',
+};
+
+export const ROOM = {
+  LIST_ROOM: '/room/list',
+  ADD_ROOM: '/room/add',
+  VIEW_ROOM: '/room/get/',
+  DELETE_ROOM: '/room/delete/',
+  UPDATE_ROOM: '/room/update',
+};
+
+export const DEVICE = {
+  LIST_DEVICE: '/device/list',
+  ADD_DEVICE: '/device/add',
+  VIEW_DEVICE: '/device/get/',
+  DELETE_DEVICE: '/device/delete/',
+  UPDATE_DEVICE: '/device/update',
 };

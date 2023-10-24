@@ -107,6 +107,7 @@ export class GlobalService {
     }
     let userRole = decodeToken.role.name.toLowerCase();
     let permissions = decodeToken.role.permissions;
+    let account = decodeToken.account;
     if (userRole != 'super-admin' && userRole != 'client-admin') {
       userRole = 'user';
     }
@@ -117,6 +118,8 @@ export class GlobalService {
         return userRole;
       case 'permissions':
         return permissions;
+      case 'account':
+        return account;
     }
   }
 

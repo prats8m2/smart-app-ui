@@ -7,6 +7,7 @@ import { URL_ROUTES } from 'src/app/constants/routing';
 import Swal from 'sweetalert2';
 import { GlobalService } from 'src/app/core/services/global.service';
 import { ROUTING_PERMISSION } from 'src/app/constants/permission';
+import { UserService } from '../../dashboards/service/user/user.service';
 
 @Component({
   selector: 'app-list-site',
@@ -15,6 +16,10 @@ import { ROUTING_PERMISSION } from 'src/app/constants/permission';
 })
 export class ListSiteComponent implements OnInit {
   sitesList: any = [];
+  accountParams: IParams = {
+    limit: 10,
+    pageNumber: 1,
+  };
 
   siteParams: IParams = {
     limit: 10,
@@ -22,18 +27,33 @@ export class ListSiteComponent implements OnInit {
     accountId: 7,
   };
 
+  accountList: any = [];
+
   constructor(
     private siteService: SiteService,
-    private router: Router,
-    private globalService: GlobalService
+    private globalService: GlobalService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
-    this.listSiteAPI();
+    this.userService.listAccounts(this.accountParams).then(res => {
+      if (res.data) {
+        this.accountList = [...res.data.accounts];
+      }
+    });
+
+    setTimeout(() => {
+      let param: IParams = {
+        limit: 10,
+        pageNumber: 1,
+        accountId: this.accountList[0].id,
+      };
+      this.listSiteAPI(param);
+    }, 1000);
   }
 
-  listSiteAPI() {
-    this.siteService.listSite(this.siteParams).then(res => {
+  listSiteAPI(param: IParams) {
+    this.siteService.listSite(param).then(res => {
       this.sitesList = [...res.data.sites];
     });
   }
@@ -90,5 +110,15 @@ export class ListSiteComponent implements OnInit {
         }
       });
     }
+  }
+
+  changeAccountValue(event: any) {
+    let param: IParams = {
+      limit: 10,
+      pageNumber: 1,
+      accountId: event,
+    };
+
+    this.listSiteAPI(param);
   }
 }

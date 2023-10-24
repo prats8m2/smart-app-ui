@@ -3,4 +3,5 @@ export interface IParams {
   pageNumber: number;
   accountId?: number;
   roleId?: number;
+  siteId?: string;
 }

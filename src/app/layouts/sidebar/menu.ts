@@ -6,28 +6,62 @@ export const MENU: MenuItem[] = [
     label: 'Home',
     icon: 'bx-home-circle',
     subItems: [
-      { id: 100, label: 'Dashboard', link: '/dashboard', parentId: 1 },
+      {
+        id: 100,
+        label: 'Dashboard',
+        link: '/dashboard',
+        parentId: 1,
+        value: 'DASHBOARD',
+      },
     ],
   },
   {
     id: 2,
     label: 'Account',
     icon: 'bx-user',
-    subItems: [{ id: 104, label: 'List', link: '/list-account', parentId: 2 }],
+    subItems: [
+      {
+        id: 104,
+        label: 'List',
+        link: '/list-account',
+        parentId: 2,
+        value: 'LIST-ACCOUNT',
+      },
+    ],
   },
   {
     id: 3,
     label: 'Site',
     icon: 'bx-building',
-    subItems: [{ id: 110, label: 'List', link: '/list-site', parentId: 3 }],
+    subItems: [
+      {
+        id: 110,
+        label: 'List',
+        link: '/list-site',
+        parentId: 3,
+        value: 'LIST-SITE',
+      },
+    ],
   },
   {
     id: 4,
     label: 'Role',
     icon: 'bx-shield',
     subItems: [
-      { id: 112, label: 'Add', link: '/add-role', parentId: 4 },
-      { id: 115, label: 'List', link: '/list-role', parentId: 4 },
+      {
+        id: 112,
+        label: 'Add',
+        link: '/add-role',
+        parentId: 4,
+        value: 'LIST-ROLE',
+      },
+      {
+        id: 115,
+        label: 'List',
+        link: '/list-role',
+        parentId: 4,
+        value: 'LIST-ROLE',
+      },
     ],
   },
   {
@@ -35,26 +69,41 @@ export const MENU: MenuItem[] = [
     label: 'Staff',
     icon: 'bx-user-plus',
     subItems: [
-      { id: 118, label: 'Add', link: '/add-staff', parentId: 5 },
-      { id: 121, label: 'List', link: '/list-staff', parentId: 5 },
+      {
+        id: 121,
+        label: 'List',
+        link: '/list-staff',
+        parentId: 5,
+        value: 'LIST-STAFF',
+      },
     ],
   },
   {
     id: 6,
-    label: 'Room',
-    icon: 'bx-bed',
+    label: 'Device',
+    icon: 'bx-devices',
     subItems: [
-      { id: 123, label: 'Add', link: '/add-room', parentId: 6 },
-      { id: 126, label: 'List', link: '/list-room', parentId: 6 },
+      {
+        id: 131,
+        label: 'List',
+        link: '/list-device',
+        parentId: 6,
+        value: 'LIST-DEVICE',
+      },
     ],
   },
   {
     id: 7,
-    label: 'Device',
-    icon: 'bx-devices',
+    label: 'Room',
+    icon: 'bx-bed',
     subItems: [
-      { id: 128, label: 'Add', link: '/add-device', parentId: 7 },
-      { id: 131, label: 'List', link: '/list-device', parentId: 7 },
+      {
+        id: 126,
+        label: 'List',
+        link: '/list-room',
+        parentId: 7,
+        value: 'LIST-ROOM',
+      },
     ],
   },
   {
@@ -62,8 +111,13 @@ export const MENU: MenuItem[] = [
     label: 'Menu',
     icon: 'bx-menu',
     subItems: [
-      { id: 133, label: 'Add', link: '/add-menu', parentId: 8 },
-      { id: 136, label: 'List', link: '/list-menu', parentId: 8 },
+      {
+        id: 136,
+        label: 'List',
+        link: '/list-menu',
+        parentId: 8,
+        value: 'LIST-MENU',
+      },
     ],
   },
   {
@@ -71,8 +125,13 @@ export const MENU: MenuItem[] = [
     label: 'Table',
     icon: 'bx-table',
     subItems: [
-      { id: 138, label: 'ADD', link: '/add-table', parentId: 9 },
-      { id: 141, label: 'LIST', link: '/list-table', parentId: 9 },
+      {
+        id: 141,
+        label: 'LIST',
+        link: '/list-table',
+        parentId: 9,
+        value: 'LIST-TABLE',
+      },
     ],
   },
   {
@@ -80,8 +139,13 @@ export const MENU: MenuItem[] = [
     label: 'Product',
     icon: 'bx-square-rounded',
     subItems: [
-      { id: 143, label: 'ADD', link: '/add-product', parentId: 10 },
-      { id: 146, label: 'LIST', link: '/list-product', parentId: 10 },
+      {
+        id: 146,
+        label: 'LIST',
+        link: '/list-product',
+        parentId: 10,
+        value: 'LIST-PRODUCT',
+      },
     ],
   },
   {
@@ -89,8 +153,13 @@ export const MENU: MenuItem[] = [
     label: 'Category',
     icon: 'bx-spreadsheet',
     subItems: [
-      { id: 148, label: 'ADD', link: '/add-category', parentId: 11 },
-      { id: 151, label: 'LIST', link: '/list-category', parentId: 11 },
+      {
+        id: 151,
+        label: 'LIST',
+        link: '/list-category',
+        parentId: 11,
+        value: 'LIST-CATEGORY',
+      },
     ],
   },
   {
@@ -98,8 +167,13 @@ export const MENU: MenuItem[] = [
     label: 'Order',
     icon: 'bx-shopping-bag',
     subItems: [
-      { id: 153, label: 'ADD', link: '/add-order', parentId: 12 },
-      { id: 156, label: 'LIST', link: '/list-order', parentId: 12 },
+      {
+        id: 156,
+        label: 'LIST',
+        link: '/list-order',
+        parentId: 12,
+        value: 'LIST-ORDER',
+      },
     ],
   },
 ];
