@@ -8,6 +8,7 @@ import { SiteService } from '../../site/service/site.service';
 import { RoomService } from '../service/room.service';
 import { IParams } from 'src/app/core/interface/params';
 import { URL_ROUTES } from 'src/app/constants/routing';
+import { APP_ROLE } from 'src/app/constants/core';
 
 @Component({
   selector: 'app-add-room',
@@ -27,6 +28,8 @@ export class AddRoomComponent implements OnInit {
     pageNumber: 1,
   };
 
+  userRole = this.globalService.getUserRole('userRole');
+
   public roomForm: FormGroup = this.formBuilder.group({
     id: [''],
     name: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]+')]],
@@ -36,13 +39,14 @@ export class AddRoomComponent implements OnInit {
     wifi: [undefined, [Validators.required]],
   });
   constructor(
-    public formBuilder: FormBuilder,
+    private formBuilder: FormBuilder,
     private siteService: SiteService,
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
     private roomService: RoomService,
-    public deviceService: DeviceService,
-    private router: Router
+    private deviceService: DeviceService,
+    private router: Router,
+    private globalService: GlobalService
   ) {}
 
   ngOnInit(): void {
@@ -61,12 +65,16 @@ export class AddRoomComponent implements OnInit {
         });
       } else {
         this.roomForm.reset();
-        this.roomForm.get('account').setValidators([Validators.required]);
-        this.userService.listAccounts(this.accountParams).then(res => {
-          if (res.data) {
-            this.accountList = [...res.data.accounts];
-          }
-        });
+        if (this.userRole === APP_ROLE.SUPER_ADMIN) {
+          this.roomForm.get('account').setValidators([Validators.required]);
+          this.userService.listAccounts(this.accountParams).then(res => {
+            if (res.data) {
+              this.accountList = [...res.data.accounts];
+            }
+          });
+        } else {
+          this.changeAccountList(this.globalService.getUserRole('account')?.id);
+        }
       }
     });
     const attribute = document.body.getAttribute('data-layout');
@@ -103,7 +111,6 @@ export class AddRoomComponent implements OnInit {
     });
 
     setTimeout(() => {
-      console.log(this.wifiList);
       this.roomForm.get('device').setValue(this.deviceList[0]?.id);
       this.roomForm.get('wifi').setValue(this.wifiList[0]?.id);
     }, 1000);
