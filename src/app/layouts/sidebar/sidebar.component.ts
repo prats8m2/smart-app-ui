@@ -5,6 +5,7 @@ import {
   ViewChild,
   Input,
   OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import MetisMenu from 'metismenujs/dist/metismenujs';
 import { MenuItem } from './menu.model';
@@ -31,13 +32,6 @@ export class SidebarComponent implements OnInit, OnChanges {
   constructor(private globalService: GlobalService) {}
 
   ngOnInit() {
-    if ((!this.isCondensed && this.sideMenu) || this.isCondensed) {
-      setTimeout(() => {
-        this.menu = new MetisMenu(this.sideMenu.nativeElement);
-      });
-    } else if (this.menu) {
-      this.menu.dispose();
-    }
     this.initialize();
   }
 

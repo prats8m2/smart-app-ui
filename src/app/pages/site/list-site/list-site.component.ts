@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { GlobalService } from 'src/app/core/services/global.service';
 import { ROUTING_PERMISSION } from 'src/app/constants/permission';
 import { UserService } from '../../dashboards/service/user/user.service';
+import { APP_ROLE } from 'src/app/constants/core';
 
 @Component({
   selector: 'app-list-site',
@@ -28,6 +29,7 @@ export class ListSiteComponent implements OnInit {
   };
 
   accountList: any = [];
+  userRole = this.globalService.getUserRole('userRole');
 
   constructor(
     private siteService: SiteService,
@@ -36,20 +38,30 @@ export class ListSiteComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userService.listAccounts(this.accountParams).then(res => {
-      if (res.data) {
-        this.accountList = [...res.data.accounts];
-      }
-    });
+    if (this.userRole === APP_ROLE.SUPER_ADMIN) {
+      this.userService.listAccounts(this.accountParams).then(res => {
+        if (res.data) {
+          this.accountList = [...res.data.accounts];
+        }
+      });
 
-    setTimeout(() => {
-      let param: IParams = {
-        limit: 10,
-        pageNumber: 1,
-        accountId: this.accountList[0].id,
-      };
-      this.listSiteAPI(param);
-    }, 1000);
+      setTimeout(() => {
+        let param: IParams = {
+          limit: 10,
+          pageNumber: 1,
+          accountId: this.accountList[0].id,
+        };
+        this.listSiteAPI(param);
+      }, 1000);
+    } else {
+      setTimeout(() => {
+        let param: IParams = {
+          limit: 10,
+          pageNumber: 1,
+        };
+        this.listSiteAPI(param);
+      }, 1000);
+    }
   }
 
   listSiteAPI(param: IParams) {

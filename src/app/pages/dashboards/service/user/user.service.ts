@@ -3,12 +3,15 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { USER } from 'src/app/constants/api';
 import { IParams } from 'src/app/core/interface/params';
+import { GlobalService } from 'src/app/core/services/global.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private globalService: GlobalService) {}
+
+  userRole = this.globalService.getUserRole('userRole');
 
   addUser(userForm: FormGroup) {
     const { firstName, lastName, username, email, password, accountName } =
@@ -31,13 +34,15 @@ export class UserService {
   }
 
   listUser(params: IParams) {
-    return this.http
-      .get(USER.LIST_USER + `/${params.pageNumber}/${params.limit}`)
-      .toPromise()
-      .then(response => {
-        const result = JSON.parse(JSON.stringify(response));
-        return result;
-      });
+    if (this.userRole == 'super-admin') {
+      return this.http
+        .get(USER.LIST_USER + `/${params.pageNumber}/${params.limit}`)
+        .toPromise()
+        .then(response => {
+          const result = JSON.parse(JSON.stringify(response));
+          return result;
+        });
+    }
   }
 
   deleteUser(id: number) {

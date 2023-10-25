@@ -8,6 +8,7 @@ import { RoleService } from '../../role/services/role.service';
 import { StaffService } from '../services/staff.service';
 import { URL_ROUTES } from 'src/app/constants/routing';
 import { GlobalService } from 'src/app/core/services/global.service';
+import { APP_ROLE } from 'src/app/constants/core';
 
 @Component({
   selector: 'app-add-staff',
@@ -20,7 +21,7 @@ export class AddStaffComponent implements OnInit {
   accountList: any = [];
   siteList: any = [];
   roleList: any = [];
-  userRole: string;
+  userRole = this.globalService.getUserRole('userRole');
 
   public staffForm: FormGroup = this.formBuilder.group({
     id: [''],
@@ -69,7 +70,6 @@ export class AddStaffComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userRole = this.globalService.getUserRole('userRole');
     this.activatedRoute.queryParams.subscribe(params => {
       if (params.edit) {
         this.isEditScreen = true;
@@ -81,17 +81,38 @@ export class AddStaffComponent implements OnInit {
             this.staffForm.get('phone').setValue(res.data.mobile);
             this.staffForm.get('account').setValue(res.data.account.name);
             this.staffForm.get('role').setValue(res.data.role.name);
-
-            console.log(this.staffForm.value);
           }
         });
       } else {
         this.staffForm.reset();
-        this.userService.listAccounts(this.accountParams).then(res => {
-          if (res.data) {
-            this.accountList = [...res.data.accounts];
-          }
-        });
+        if (this.userRole === APP_ROLE.SUPER_ADMIN) {
+          this.userService.listAccounts(this.accountParams).then(res => {
+            if (res.data) {
+              this.accountList = [...res.data.accounts];
+            }
+          });
+        } else {
+          this.staffForm
+            .get('account')
+            .setValue(this.globalService.getUserRole('account').id);
+
+          setTimeout(() => {
+            let param: IParams = {
+              limit: 10,
+              pageNumber: 1,
+              accountId: this.globalService.getUserRole('account').id,
+            };
+            this.siteService.listSite(param).then(res => {
+              this.siteList = [...res.data.sites];
+            });
+
+            this.roleService.listRole(param).then(res => {
+              if (res.data) {
+                this.roleList = [...res.data.roles];
+              }
+            });
+          }, 1000);
+        }
       }
     });
     const attribute = document.body.getAttribute('data-layout');

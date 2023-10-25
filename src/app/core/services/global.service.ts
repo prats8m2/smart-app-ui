@@ -29,68 +29,6 @@ export class GlobalService {
     }
   }
 
-  checkEmptyValue(valueReceived: string | number | undefined) {
-    if (valueReceived === null || valueReceived === '') {
-      return 'NA';
-    }
-    return valueReceived;
-  }
-
-  chipNameProvider(fullName: string | undefined | null) {
-    const splitNameArray: string[] | undefined = fullName?.trim()?.split(' ');
-    let chipName = '';
-    if (splitNameArray) {
-      if (splitNameArray.length > 1 && splitNameArray[1] !== 'null') {
-        chipName =
-          splitNameArray[0].charAt(0) +
-          splitNameArray[splitNameArray.length - 1].charAt(0);
-      } else {
-        chipName =
-          splitNameArray[0].charAt(0) +
-          splitNameArray[0].charAt(splitNameArray[0].length - 1);
-      }
-    }
-    return chipName.toUpperCase();
-  }
-
-  toControl(absCtrl: AbstractControl): FormControl {
-    const ctrl = absCtrl as FormControl;
-    return ctrl;
-  }
-
-  checkMobileField(mobileNumber: string, countryCode: string) {
-    if (
-      mobileNumber !== null &&
-      mobileNumber !== '' &&
-      mobileNumber !== undefined
-    ) {
-      return countryCode + mobileNumber.toString();
-    } else {
-      return null;
-    }
-  }
-
-  setMobileField(value: string, mobileNumber: string) {
-    let numberValue!: string;
-    let countryCode!: string;
-    if (mobileNumber !== undefined && mobileNumber !== null) {
-      const length = mobileNumber.length;
-      const splitIndex = length - 10;
-      (countryCode = mobileNumber.slice(0, splitIndex)),
-        (numberValue = mobileNumber.slice(splitIndex, length));
-    } else {
-      numberValue = '';
-      countryCode = '+91';
-    }
-    switch (value) {
-      case 'code':
-        return countryCode;
-      case 'number':
-        return numberValue;
-      default:
-        return '';
-    }
-  }
   getDecodeToken() {
     const accessToken = StorageService.get(StorageType.ACCESS_TOKEN);
     if (accessToken) return JSON.parse(atob(accessToken.split('.')[1]));
@@ -108,6 +46,7 @@ export class GlobalService {
     let userRole = decodeToken.role.name.toLowerCase();
     let permissions = decodeToken.role.permissions;
     let account = decodeToken.account;
+
     if (userRole != 'super-admin' && userRole != 'client-admin') {
       userRole = 'user';
     }
@@ -121,23 +60,6 @@ export class GlobalService {
       case 'account':
         return account;
     }
-  }
-
-  camelCase(input: string): string {
-    const words = input.split(' ');
-    if (words.length === 1) {
-      return words[0].toLowerCase();
-    }
-
-    const capitalizedWords = words.map((word, index) => {
-      if (index === 0) {
-        return word.toLowerCase();
-      } else {
-        return word.charAt(0).toUpperCase() + word.slice(1);
-      }
-    });
-
-    return capitalizedWords.join('');
   }
 
   checkForPermissionAndRoute(permission: any, routerLink: string) {

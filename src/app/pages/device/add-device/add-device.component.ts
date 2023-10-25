@@ -9,6 +9,7 @@ import { RoomService } from '../../room/service/room.service';
 import { DeviceService } from '../service/device.service';
 import { ROUTING_PERMISSION } from 'src/app/constants/permission';
 import { URL_ROUTES } from 'src/app/constants/routing';
+import { APP_ROLE } from 'src/app/constants/core';
 
 @Component({
   selector: 'app-add-device',
@@ -21,6 +22,7 @@ export class AddDeviceComponent implements OnInit {
   siteList: any = [];
   accountList: any[];
   roomList: any[];
+  userRole = this.globalService.getUserRole('userRole');
 
   public deviceForm: FormGroup = this.formBuilder.group({
     id: [''],
@@ -54,17 +56,60 @@ export class AddDeviceComponent implements OnInit {
           if (res.status == true) {
             this.deviceForm.get('code').setValue(res.data.device.code);
             this.deviceForm.get('site').setValue(res.data.device.site.name);
-
-            console.log(this.deviceForm.value);
           }
         });
       } else {
         this.deviceForm.reset();
-        this.userService.listAccounts(this.accountParams).then(res => {
-          if (res.data) {
-            this.accountList = [...res.data.accounts];
-          }
-        });
+        if (this.userRole === APP_ROLE.SUPER_ADMIN) {
+          this.userService.listAccounts(this.accountParams).then(res => {
+            if (res.data) {
+              this.accountList = [...res.data.accounts];
+            }
+            this.deviceForm.get('account').setValue(this.accountList[0]?.id);
+
+            let param: IParams = {
+              limit: 10,
+              pageNumber: 1,
+              accountId: this.accountList[0]?.id,
+            };
+
+            this.siteService.listSite(param).then(res => {
+              this.siteList = [...res.data.sites];
+            });
+            setTimeout(() => {
+              this.deviceForm.get('site').setValue(this.siteList[0]?.id);
+              let param: IParams = {
+                limit: 10,
+                pageNumber: 1,
+                siteId: this.siteList[0]?.id,
+              };
+
+              this.roomService.listRooms(param).then(res => {
+                this.roomList = [...res.data.rooms];
+              });
+            }, 1000);
+          });
+        } else {
+          this.deviceForm
+            .get('account')
+            .setValue(this.globalService.getUserRole('account').id);
+
+          let param: IParams = {
+            limit: 10,
+            pageNumber: 1,
+            accountId: this.globalService.getUserRole('account').id,
+          };
+
+          console.log(param);
+          this.siteService.listSite(param).then(res => {
+            this.siteList = [...res.data.sites];
+          });
+
+          setTimeout(() => {
+            console.log(this.siteList);
+            this.changeSiteList(this.siteList[0]?.id);
+          }, 1000);
+        }
       }
     });
     const attribute = document.body.getAttribute('data-layout');

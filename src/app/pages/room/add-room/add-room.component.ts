@@ -31,7 +31,7 @@ export class AddRoomComponent implements OnInit {
     id: [''],
     name: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]+')]],
     site: [undefined, [Validators.required]],
-    account: [undefined, [Validators.required]],
+    account: [undefined],
     device: [undefined, [Validators.required]],
     wifi: [undefined, [Validators.required]],
   });
@@ -53,13 +53,15 @@ export class AddRoomComponent implements OnInit {
         this.roomForm.value.id = params['id'];
         this.roomService.viewRoom(roomId).then(res => {
           if (res.status == true) {
-            this.roomForm.get('site').setValue(res.data?.site?.name);
-            this.roomForm.get('name').setValue(res.data?.name);
+            this.roomForm.get('site').setValue(res.data?.site?.id);
+            this.roomForm.get('name').setValue(res.data?.id);
             this.roomForm.get('device').setValue(res.data?.device?.code);
+            this.roomForm.get('id').setValue(res?.data?.id);
           }
         });
       } else {
         this.roomForm.reset();
+        this.roomForm.get('account').setValidators([Validators.required]);
         this.userService.listAccounts(this.accountParams).then(res => {
           if (res.data) {
             this.accountList = [...res.data.accounts];
@@ -102,8 +104,8 @@ export class AddRoomComponent implements OnInit {
 
     setTimeout(() => {
       console.log(this.wifiList);
-      this.roomForm.get('device').setValue(this.deviceList[0].id);
-      this.roomForm.get('wifi').setValue(this.wifiList[0].id);
+      this.roomForm.get('device').setValue(this.deviceList[0]?.id);
+      this.roomForm.get('wifi').setValue(this.wifiList[0]?.id);
     }, 1000);
   }
 
@@ -120,7 +122,7 @@ export class AddRoomComponent implements OnInit {
       this.siteList = [...res.data.sites];
     });
     setTimeout(() => {
-      this.roomForm.get('site').setValue(this.siteList[0].id);
+      this.roomForm.get('site').setValue(this.siteList[0]?.id);
     }, 1000);
   }
 

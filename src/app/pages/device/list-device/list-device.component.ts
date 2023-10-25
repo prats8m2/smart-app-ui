@@ -5,11 +5,11 @@ import { URL_ROUTES } from 'src/app/constants/routing';
 import { IParams } from 'src/app/core/interface/params';
 import { GlobalService } from 'src/app/core/services/global.service';
 import { UserService } from '../../dashboards/service/user/user.service';
-import { RoleService } from '../../role/services/role.service';
 import { StaffService } from '../../staff/services/staff.service';
 import { SiteService } from '../../site/service/site.service';
 import { DeviceService } from '../service/device.service';
 import Swal from 'sweetalert2';
+import { APP_ROLE } from 'src/app/constants/core';
 
 @Component({
   selector: 'app-list-device',
@@ -21,14 +21,14 @@ export class ListDeviceComponent implements OnInit {
   siteList: any = [];
   deviceList: any = [];
   accountList: any = [];
+
+  userRole = this.globalService.getUserRole('userRole');
   accountParams: IParams = {
     limit: 10,
     pageNumber: 1,
   };
   constructor(
-    private router: Router,
     private globalService: GlobalService,
-    private staffService: StaffService,
     private siteService: SiteService,
     private userService: UserService,
     private deviceService: DeviceService
@@ -47,19 +47,28 @@ export class ListDeviceComponent implements OnInit {
   }
 
   listAccountAPI() {
-    this.userService.listAccounts(this.accountParams).then(res => {
-      if (res.data) {
-        this.accountList = [...res.data.accounts];
-      }
-    });
-    setTimeout(() => {
+    if (this.userRole === APP_ROLE.SUPER_ADMIN) {
+      this.userService.listAccounts(this.accountParams).then(res => {
+        if (res.data) {
+          this.accountList = [...res.data.accounts];
+        }
+      });
+      setTimeout(() => {
+        let param: IParams = {
+          limit: 10,
+          pageNumber: 1,
+          accountId: this.accountList[0].id,
+        };
+        this.listSiteAPI(param);
+      }, 1000);
+    } else {
       let param: IParams = {
         limit: 10,
         pageNumber: 1,
-        accountId: this.accountList[0].id,
+        accountId: this.globalService.getUserRole('account').id,
       };
       this.listSiteAPI(param);
-    }, 1000);
+    }
   }
 
   listSiteAPI(param: IParams) {

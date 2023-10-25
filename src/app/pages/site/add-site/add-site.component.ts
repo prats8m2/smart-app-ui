@@ -7,6 +7,8 @@ import { UserService } from '../../dashboards/service/user/user.service';
 import { IParams } from 'src/app/core/interface/params';
 import { SiteService } from '../service/site.service';
 import { URL_ROUTES } from 'src/app/constants/routing';
+import { GlobalService } from 'src/app/core/services/global.service';
+import { APP_ROLE } from 'src/app/constants/core';
 
 @Component({
   selector: 'app-add-site',
@@ -22,6 +24,8 @@ export class AddSiteComponent implements OnInit {
     limit: 10,
     pageNumber: 1,
   };
+
+  userRole = this.globalService.getUserRole('userRole');
 
   public siteForm: FormGroup = this.formBuilder.group({
     id: [''],
@@ -47,7 +51,8 @@ export class AddSiteComponent implements OnInit {
     public userService: UserService,
     private activatedRoute: ActivatedRoute,
     private siteService: SiteService,
-    private router: Router
+    private router: Router,
+    private globalService: GlobalService
   ) {}
 
   ngOnInit(): void {
@@ -72,13 +77,17 @@ export class AddSiteComponent implements OnInit {
         });
       } else {
         this.siteForm.reset();
-        this.userService.listAccounts(this.accountParams).then(res => {
-          if (res.data) {
-            res.data.accounts.forEach(element => {
-              this.accountList.push(element);
-            });
-          }
-        });
+        if (this.userRole === APP_ROLE.SUPER_ADMIN) {
+          this.userService.listAccounts(this.accountParams).then(res => {
+            if (res.data) {
+              this.accountList = [...res.data.accounts];
+            }
+          });
+        } else {
+          this.siteForm
+            .get('account')
+            .setValue(this.globalService.getUserRole('account').id);
+        }
       }
     });
     const attribute = document.body.getAttribute('data-layout');

@@ -6,6 +6,8 @@ import { URL_ROUTES } from 'src/app/constants/routing';
 import Swal from 'sweetalert2';
 import { GlobalService } from 'src/app/core/services/global.service';
 import { ROUTING_PERMISSION } from 'src/app/constants/permission';
+import { ROLE } from 'src/app/constants/api';
+import { APP_ROLE } from 'src/app/constants/core';
 
 @Component({
   selector: 'app-list-user',
@@ -31,9 +33,11 @@ export class ListUserComponent implements OnInit {
   }
 
   listUserAPI() {
-    this.userService.listUser(this.userParams).then(res => {
-      this.usersList = [...res.data.users];
-    });
+    if (this.globalService.getUserRole('userRole') === APP_ROLE.SUPER_ADMIN) {
+      this.userService.listUser(this.userParams).then(res => {
+        this.usersList = [...res.data.users];
+      });
+    }
   }
 
   editUser(id: any) {

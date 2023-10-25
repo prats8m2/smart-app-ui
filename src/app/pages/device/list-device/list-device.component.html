@@ -29,7 +29,10 @@
               </div>
               <div class="col-md-10">
                 <div class="row justify-content-end">
-                  <div class="col-md-3 page-title-right">
+                  <div
+                    class="col-md-3 page-title-right"
+                    *ngIf="userRole == 'super-admin'"
+                  >
                     <div class="col-md-4 mt-2">
                       <label for="account">Account</label>
                     </div>
