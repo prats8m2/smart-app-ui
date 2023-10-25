@@ -1,4 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { GlobalService } from 'src/app/core/services/global.service';
+import { UserService } from '../../dashboards/service/user/user.service';
+import { DeviceService } from '../../device/service/device.service';
+import { SiteService } from '../../site/service/site.service';
+import { RoomService } from '../service/room.service';
+import { IParams } from 'src/app/core/interface/params';
+import { URL_ROUTES } from 'src/app/constants/routing';
 
 @Component({
   selector: 'app-add-room',
@@ -6,7 +15,127 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-room.component.scss'],
 })
 export class AddRoomComponent implements OnInit {
-  constructor() {}
+  isEditScreen: boolean = false;
+  submit: boolean;
+  siteList: any = [];
+  accountList: any[];
+  roomList: any[];
+  deviceList: any[];
+  wifiList: any[];
+  accountParams: IParams = {
+    limit: 10,
+    pageNumber: 1,
+  };
 
-  ngOnInit(): void {}
+  public roomForm: FormGroup = this.formBuilder.group({
+    id: [''],
+    name: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]+')]],
+    site: [undefined, [Validators.required]],
+    account: [undefined, [Validators.required]],
+    device: [undefined, [Validators.required]],
+    wifi: [undefined, [Validators.required]],
+  });
+  constructor(
+    public formBuilder: FormBuilder,
+    private siteService: SiteService,
+    private activatedRoute: ActivatedRoute,
+    private userService: UserService,
+    private roomService: RoomService,
+    public deviceService: DeviceService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (params.edit) {
+        this.isEditScreen = true;
+        let roomId = params['id'];
+        this.roomForm.value.id = params['id'];
+        this.roomService.viewRoom(roomId).then(res => {
+          if (res.status == true) {
+            this.roomForm.get('site').setValue(res.data?.site?.name);
+            this.roomForm.get('name').setValue(res.data?.name);
+            this.roomForm.get('device').setValue(res.data?.device?.code);
+          }
+        });
+      } else {
+        this.roomForm.reset();
+        this.userService.listAccounts(this.accountParams).then(res => {
+          if (res.data) {
+            this.accountList = [...res.data.accounts];
+          }
+        });
+      }
+    });
+    const attribute = document.body.getAttribute('data-layout');
+
+    const vertical = document.getElementById('layout-vertical');
+    if (vertical != null) {
+      vertical.setAttribute('checked', 'true');
+    }
+    if (attribute == 'horizontal') {
+      const horizontal = document.getElementById('layout-horizontal');
+      if (horizontal != null) {
+        horizontal.setAttribute('checked', 'true');
+      }
+    }
+    this.submit = false;
+  }
+
+  validSubmit() {
+    this.submit = true;
+  }
+  changeSiteList(value: any) {
+    let param: IParams = {
+      limit: 10,
+      pageNumber: 1,
+      siteId: value,
+    };
+
+    this.deviceService.listDevices(param).then(res => {
+      this.deviceList = [...res.data.devices];
+    });
+
+    this.siteService.viewSite(value).then(res => {
+      this.wifiList = [...res.data.wifi];
+    });
+
+    setTimeout(() => {
+      console.log(this.wifiList);
+      this.roomForm.get('device').setValue(this.deviceList[0].id);
+      this.roomForm.get('wifi').setValue(this.wifiList[0].id);
+    }, 1000);
+  }
+
+  changeAccountList(value: any) {
+    let param: IParams = {
+      limit: 10,
+      pageNumber: 1,
+      accountId: value,
+    };
+
+    this.roomForm.get('account').setValue(value);
+
+    this.siteService.listSite(param).then(res => {
+      this.siteList = [...res.data.sites];
+    });
+    setTimeout(() => {
+      this.roomForm.get('site').setValue(this.siteList[0].id);
+    }, 1000);
+  }
+
+  onSave() {
+    this.roomService.addRoom(this.roomForm).then(res => {
+      if (res.status) {
+        console.log('Room added successfully');
+        this.router.navigateByUrl(URL_ROUTES.LIST_ROOM);
+      } else {
+        console.log('error');
+      }
+    });
+  }
+  onUpdate() {}
+  onReset() {
+    this.roomForm.reset();
+  }
 }

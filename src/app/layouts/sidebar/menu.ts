@@ -95,7 +95,7 @@ export const MENU: MenuItem[] = [
   {
     id: 7,
     label: 'Room',
-    icon: 'bx-bed',
+    icon: 'bx-hotel',
     subItems: [
       {
         id: 126,
@@ -108,36 +108,36 @@ export const MENU: MenuItem[] = [
   },
   {
     id: 8,
-    label: 'Menu',
-    icon: 'bx-menu',
-    subItems: [
-      {
-        id: 136,
-        label: 'List',
-        link: '/list-menu',
-        parentId: 8,
-        value: 'LIST-MENU',
-      },
-    ],
-  },
-  {
-    id: 9,
     label: 'Table',
-    icon: 'bx-table',
+    icon: 'bx bxs-drink',
     subItems: [
       {
         id: 141,
         label: 'LIST',
         link: '/list-table',
-        parentId: 9,
+        parentId: 8,
         value: 'LIST-TABLE',
+      },
+    ],
+  },
+  {
+    id: 9,
+    label: 'Category',
+    icon: 'bx-spreadsheet',
+    subItems: [
+      {
+        id: 151,
+        label: 'LIST',
+        link: '/list-category',
+        parentId: 9,
+        value: 'LIST-CATEGORY',
       },
     ],
   },
   {
     id: 10,
     label: 'Product',
-    icon: 'bx-square-rounded',
+    icon: 'bx bxs-shopping-bag-alt',
     subItems: [
       {
         id: 146,
@@ -150,15 +150,15 @@ export const MENU: MenuItem[] = [
   },
   {
     id: 11,
-    label: 'Category',
-    icon: 'bx-spreadsheet',
+    label: 'Menu',
+    icon: 'bx-food-menu',
     subItems: [
       {
-        id: 151,
-        label: 'LIST',
-        link: '/list-category',
+        id: 136,
+        label: 'List',
+        link: '/list-menu',
         parentId: 11,
-        value: 'LIST-CATEGORY',
+        value: 'LIST-MENU',
       },
     ],
   },

@@ -79,6 +79,7 @@
                     <th>Site</th>
                     <th>Site Address</th>
                     <th>Room</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -89,7 +90,7 @@
                     </td>
                     <td>{{ device?.site?.name }}</td>
                     <td>{{ device?.site?.address }}</td>
-                    <td>{{ device.room || '-' }}</td>
+                    <td>{{ device?.room?.name || '-' }}</td>
                     <td>
                       <div ngbDropdown placement="bottom-left">
                         <i

@@ -29,4 +29,10 @@ export const URL_ROUTES = {
   EDIT_DEVICE: '/edit-device',
   VIEW_DEVICE: '/view-device/',
   LIST_DEVICE: '/list-device',
+
+  //room
+  ADD_ROOM: '/add-room',
+  EDIT_ROOM: '/edit-room',
+  VIEW_ROOM: '/view-room/',
+  LIST_ROOM: '/list-room',
 };
