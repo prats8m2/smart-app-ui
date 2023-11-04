@@ -5,7 +5,7 @@
         class="page-title-box d-flex align-items-center justify-content-between"
       >
         <h4 class="mb-0 font-size-18">Sites</h4>
-        <div class="page-title-right">
+        <div class="page-title-right" *ngIf="showAddSite">
           <div class="col-md-12 d-flex justify-content-end">
             <input
               type="button"
@@ -29,7 +29,7 @@
               </div>
               <div class="col-md-6">
                 <div class="page-title-right">
-                  <div class="row" *ngIf="userRole == 'super-admin'">
+                  <div class="row" *ngIf="showAccountList">
                     <div class="col-md-5"></div>
                     <div class="col-md-2 mt-2">
                       <label for="account">Account</label>
@@ -100,6 +100,7 @@
                           ngbDropdownMenu
                         >
                           <a
+                          *ngIf="showEditSite"
                             class="dropdown-item"
                             href="javascript: void(0);"
                             (click)="editSite(site.id)"
@@ -107,6 +108,7 @@
                           >
 
                           <a
+                          *ngIf="showDeleteSite"
                             class="dropdown-item"
                             href="javascript: void(0);"
                             (click)="deleteSite(site.id)"

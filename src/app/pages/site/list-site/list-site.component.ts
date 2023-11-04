@@ -29,7 +29,10 @@ export class ListSiteComponent implements OnInit {
   };
 
   accountList: any = [];
-  userRole = this.globalService.getUserRole('userRole');
+  showAccountList: boolean = false;
+  showAddSite: boolean = false;
+  showEditSite: boolean = false;
+  showDeleteSite: boolean = false;
 
   constructor(
     private siteService: SiteService,
@@ -38,30 +41,34 @@ export class ListSiteComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.userRole === APP_ROLE.SUPER_ADMIN) {
+    this.checkPermissions();
+    if (this.showAccountList) {
       this.userService.listAccounts(this.accountParams).then(res => {
         if (res.data) {
           this.accountList = [...res.data.accounts];
+          let param: IParams = {
+            limit: 10,
+            pageNumber: 1,
+            accountId: this.accountList[0].id,
+          };
+          this.listSiteAPI(param);
         }
       });
-
-      setTimeout(() => {
-        let param: IParams = {
-          limit: 10,
-          pageNumber: 1,
-          accountId: this.accountList[0].id,
-        };
-        this.listSiteAPI(param);
-      }, 1000);
     } else {
-      setTimeout(() => {
-        let param: IParams = {
-          limit: 10,
-          pageNumber: 1,
-        };
-        this.listSiteAPI(param);
-      }, 1000);
+      let param: IParams = {
+        limit: 10,
+        pageNumber: 1,
+      };
+      this.listSiteAPI(param);
     }
+  }
+
+  checkPermissions() {
+    this.showAccountList =
+      this.globalService.checkForPermission('LIST-ACCOUNT');
+    this.showAddSite = this.globalService.checkForPermission('ADD-SITE');
+    this.showEditSite = this.globalService.checkForPermission('UPDATE-SITE');
+    this.showDeleteSite = this.globalService.checkForPermission('DELETE-SITE');
   }
 
   listSiteAPI(param: IParams) {
