@@ -10,4 +10,5 @@ export interface MenuItem {
   isLayout?: boolean;
   name?: string;
   createdOn?: any;
+  permission?: string;
 }

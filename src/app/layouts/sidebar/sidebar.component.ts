@@ -23,7 +23,7 @@ export class SidebarComponent implements OnInit, OnChanges {
   menu: any;
   data: any;
 
-  menuItems = [];
+  permissions = [];
   sideBarItems = [];
   showSubItems = true;
 
@@ -46,27 +46,16 @@ export class SidebarComponent implements OnInit, OnChanges {
   }
 
   initialize(): void {
-    const parentIds: number[] = [1];
-    this.menuItems = this.globalService.getUserRole('permissions');
+    this.permissions = this.globalService.getUserRole('permissions');
+    console.log('permissions:', this.permissions);
 
-    let menuItemsNames: any[] = [];
-    this.menuItems.forEach((item: any) => {
-      menuItemsNames.push(item.name);
+    let permissionArray: any[] = [];
+    this.permissions.forEach((item: any) => {
+      permissionArray.push(item.name);
     });
 
     for (const item of MENU) {
-      if (item.subItems) {
-        for (const subItem of item.subItems) {
-          if (menuItemsNames.includes(subItem.value)) {
-            parentIds.push(item.id);
-            break;
-          }
-        }
-      }
-    }
-
-    for (const item of MENU) {
-      if (parentIds.includes(item.id)) {
+      if (permissionArray.includes(item.permission)) {
         this.sideBarItems.push(item);
       }
     }
@@ -86,7 +75,6 @@ export class SidebarComponent implements OnInit, OnChanges {
   // }
 
   toggleSubItems(item: any) {
-    console.log('HI');
     this.showSubItems = !this.showSubItems;
   }
 }
