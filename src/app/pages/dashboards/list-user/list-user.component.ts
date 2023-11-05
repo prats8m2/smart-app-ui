@@ -33,11 +33,9 @@ export class ListUserComponent implements OnInit {
   }
 
   listUserAPI() {
-    if (this.globalService.getUserRole('userRole') === APP_ROLE.SUPER_ADMIN) {
-      this.userService.listUser(this.userParams).then(res => {
-        this.usersList = [...res.data.users];
-      });
-    }
+    this.userService.listUser(this.userParams).then(res => {
+      this.usersList = [...res.data.users];
+    });
   }
 
   editUser(id: any) {
