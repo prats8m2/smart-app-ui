@@ -1,0 +1,207 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div
+        class="page-title-box d-flex align-items-center justify-content-between"
+      >
+        <h4 class="mb-0 font-size-18" *ngIf="!isEditScreen">Add New Staff</h4>
+        <h4 class="mb-0 font-size-18" *ngIf="isEditScreen">Update Staff</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <form
+              class="needs-validation"
+              (ngSubmit)="validSubmit()"
+              [formGroup]="staffForm"
+            >
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="firstName">First name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="firstName"
+                      formControlName="firstName"
+                      placeholder="First name"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="lastName">Last name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="lastName"
+                      formControlName="lastName"
+                      placeholder="Last name"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="username">Username</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="username"
+                      formControlName="username"
+                      placeholder="Username"
+                      [attr.disabled]="isEditScreen ? true : null"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="email">Email</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      formControlName="email"
+                      placeholder="Email"
+                      [attr.disabled]="isEditScreen ? true : null"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="phone">Phone Number</label>
+                    <input
+                      type="phone"
+                      class="form-control"
+                      id="phone"
+                      formControlName="phone"
+                      placeholder="Phone Number"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      placeholder="Password"
+                      formControlName="password"
+                    />
+                    <div
+                      *ngIf="submit && type.password.errors"
+                      class="invalid-feedback"
+                    >
+                      <span *ngIf="type.password.errors.required"
+                        >Password is required.</span
+                      >
+                      <span *ngIf="type.password.errors.minlength"
+                        >Password must be at least 6 characters.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6" *ngIf="userRole === 'super-admin'">
+                  <div class="mb-3">
+                    <label for="account">Account</label>
+                    <select
+                      class="form-control form-select"
+                      id="account"
+                      formControlName="account"
+                      placeholder="Account"
+                      [attr.disabled]="isEditScreen ? true : null"
+                      (change)="changeAccountValue($event.target.value)"
+                    >
+                      <option
+                        *ngFor="let account of accountList"
+                        [value]="account.id"
+                      >
+                        {{ account.name }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="account">Site</label>
+                    <select
+                      class="form-control form-select"
+                      id="site"
+                      formControlName="site"
+                      placeholder="Site Name"
+                      [attr.disabled]="isEditScreen ? true : null"
+                    >
+                      <option *ngFor="let site of siteList" [value]="site.id">
+                        {{ site.name }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="role">Role</label>
+                    <select
+                      class="form-control form-select"
+                      id="role"
+                      formControlName="role"
+                      placeholder="Role Name"
+                      [attr.disabled]="isEditScreen ? true : null"
+                    >
+                      <option *ngFor="let role of roleList" [value]="role.id">
+                        {{ role.name }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex flex-wrap gap-2">
+                <button
+                  type="reset"
+                  class="btn btn-secondary waves-effect"
+                  (click)="onReset()"
+                  [disabled]="staffForm.pristine"
+                >
+                  Reset
+                </button>
+                <button
+                  *ngIf="!isEditScreen"
+                  type="submit"
+                  class="btn btn-primary waves-effect waves-light"
+                  (click)="onSave()"
+                  [disabled]="staffForm.invalid || staffForm.pristine"
+                >
+                  Save
+                </button>
+                <button
+                  *ngIf="isEditScreen"
+                  type="submit"
+                  class="btn btn-primary waves-effect waves-light"
+                  (click)="onUpdate()"
+                  [disabled]="staffForm.invalid || staffForm.pristine"
+                >
+                  Update
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

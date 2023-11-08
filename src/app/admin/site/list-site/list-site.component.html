@@ -1,0 +1,130 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div
+        class="page-title-box d-flex align-items-center justify-content-between"
+      >
+        <h4 class="mb-0 font-size-18">Sites</h4>
+        <div class="page-title-right" *ngIf="showAddSite">
+          <div class="text-sm-end">
+            <button
+              type="button"
+              class="btn btn-primary btn-rounded mb-2 me-2"
+              (click)="routeToAddSite()"
+            >
+              <i class="mdi mdi-plus mr-1"></i> Add Site
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card user-table-card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <h4 class="card-title">List of Site(s)</h4>
+              </div>
+              <div class="col-md-6">
+                <div class="page-title-right">
+                  <div class="row" *ngIf="showAccountList">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-2 mt-2">
+                      <label for="account">Account</label>
+                    </div>
+                    <div class="col-md-5 mb-3">
+                      <select
+                        class="form-control form-select"
+                        id="role"
+                        placeholder="Account"
+                        (change)="changeAccountValue($event.target.value)"
+                      >
+                        <option
+                          *ngFor="let account of accountList"
+                          [value]="account.id"
+                        >
+                          {{ account.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="table-responsive user-table">
+              <table class="table mb-0">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngIf="sitesList.length == 0">
+                    <td colspan="6">
+                      <p class="card-title-desc">No Records Found</p>
+                    </td>
+                  </tr>
+                  <tr *ngFor="let site of sitesList; let i = index">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td (click)="viewSite(site.id)" class="show-cursor">
+                      {{ site.name }}
+                    </td>
+                    <td>
+                      {{
+                        site.type === 1
+                          ? "Hotel"
+                          : site.type === 2
+                          ? "Restaurant"
+                          : "Unknown"
+                      }}
+                    </td>
+                    <td>{{ site.address }}</td>
+
+                    <td>
+                      <div ngbDropdown placement="bottom-left">
+                        <i
+                          class="mdi mdi-dots-vertical dropdown-toggle show-cursor"
+                          ngbDropdownToggle
+                          data-toggle="dropdown"
+                          aria-expanded="true"
+                        ></i>
+                        <div
+                          class="dropdown-menu dropdown-menu-end"
+                          ngbDropdownMenu
+                        >
+                          <a
+                            *ngIf="showEditSite"
+                            class="dropdown-item"
+                            href="javascript: void(0);"
+                            (click)="editSite(site.id)"
+                            ><i class="mdi mdi-account-edit"></i> Edit</a
+                          >
+
+                          <a
+                            *ngIf="showDeleteSite"
+                            class="dropdown-item"
+                            href="javascript: void(0);"
+                            (click)="deleteSite(site.id)"
+                            ><i class="mdi mdi-delete"></i> Delete</a
+                          >
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

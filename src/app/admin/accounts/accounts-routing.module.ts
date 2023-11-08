@@ -1,23 +1,25 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { ListAccountsComponent } from './list-accounts/list-accounts.component';
-import { AddAccountComponent } from './add-account/add-account.component';
-import { EditAccountComponent } from './edit-account/edit-account.component';
-import { ViewAccountComponent } from './view-account/view-account.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { ListAccountsComponent } from "./list-accounts/list-accounts.component";
+import { AddAccountComponent } from "./add-account/add-account.component";
+import { EditAccountComponent } from "./edit-account/edit-account.component";
+import { ViewAccountComponent } from "./view-account/view-account.component";
 
 const routes: Routes = [
   {
-    path: 'list-accounts',
+    path: "list-accounts",
     component: ListAccountsComponent,
   },
-    {
-    path: 'add-account',
+  {
+    path: "add-account",
     component: AddAccountComponent,
-  },  {
-    path: 'edit-account/:id',
+  },
+  {
+    path: "edit-account/:id",
     component: EditAccountComponent,
-  },  {
-    path: 'view-account/:id',
+  },
+  {
+    path: "view-account/:id",
     component: ViewAccountComponent,
   },
 ];

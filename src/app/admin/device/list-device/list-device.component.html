@@ -1,0 +1,134 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div
+        class="page-title-box d-flex align-items-center justify-content-between"
+      >
+        <h4 class="mb-0 font-size-18">Device</h4>
+        <div class="page-title-right">
+          <div class="col-md-12 d-flex justify-content-end">
+            <input
+              type="button"
+              class="btn btn-success mt-3 mt-lg-0 ml-auto"
+              value="Add Device"
+              (click)="routeToAddDevice()"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card user-table-card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-2">
+                <h4 class="card-title">List of Device(s)</h4>
+              </div>
+              <div class="col-md-10">
+                <div class="row justify-content-end">
+                  <div
+                    class="col-md-3 page-title-right"
+                    *ngIf="userRole == 'super-admin'"
+                  >
+                    <div class="col-md-4 mt-2">
+                      <label for="account">Account</label>
+                    </div>
+                    <div class="col-md-8 mb-3">
+                      <select
+                        class="form-control form-select"
+                        id="account"
+                        placeholder="Account"
+                        (change)="changeAccountValue($event.target.value)"
+                      >
+                        <option
+                          *ngFor="let account of accountList"
+                          [value]="account.id"
+                        >
+                          {{ account.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3 page-title-right">
+                    <div class="col-md-4 mt-2">
+                      <label for="site">Site</label>
+                    </div>
+                    <div class="col-md-8 mb-3">
+                      <select
+                        class="form-control form-select"
+                        id="site"
+                        placeholder="Site"
+                        (change)="changeSiteValue($event.target.value)"
+                      >
+                        <option *ngFor="let site of siteList" [value]="site.id">
+                          {{ site.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="table-responsive user-table">
+              <table class="table mb-0">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Code</th>
+                    <th>Site</th>
+                    <th>Site Address</th>
+                    <th>Room</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let device of deviceList; let i = index">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td (click)="viewDevice(device.id)" class="show-cursor">
+                      {{ device.code }}
+                    </td>
+                    <td>{{ device?.site?.name }}</td>
+                    <td>{{ device?.site?.address }}</td>
+                    <td>{{ device?.room?.name || '-' }}</td>
+                    <td>
+                      <div ngbDropdown placement="bottom-left">
+                        <i
+                          class="mdi mdi-dots-vertical dropdown-toggle show-cursor"
+                          ngbDropdownToggle
+                          data-toggle="dropdown"
+                          aria-expanded="true"
+                        ></i>
+                        <div
+                          class="dropdown-menu dropdown-menu-end"
+                          ngbDropdownMenu
+                        >
+                          <a
+                            class="dropdown-item"
+                            href="javascript: void(0);"
+                            (click)="editDevice(device.id)"
+                            ><i class="mdi mdi-account-edit"></i> Edit</a
+                          >
+
+                          <a
+                            class="dropdown-item"
+                            href="javascript: void(0);"
+                            (click)="deleteDevice(device.id)"
+                            ><i class="mdi mdi-delete"></i> Delete</a
+                          >
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
