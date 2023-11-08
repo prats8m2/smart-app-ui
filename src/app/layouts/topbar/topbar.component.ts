@@ -1,49 +1,43 @@
-import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
-import { AuthenticationService } from '../../core/services/auth.service';
-import { AuthfakeauthenticationService } from '../../core/services/authfake.service';
-import { environment } from '../../../environments/environment';
-import { CookieService } from 'ngx-cookie-service';
-import { LanguageService } from '../../core/services/language.service';
-import { TranslateService } from '@ngx-translate/core';
-import { StorageService } from '../../core/services/storage.service';
-import { StorageType } from '../../constants/storage-type';
-import { GlobalService } from '../../core/services/global.service';
-import { IUserInfo } from '../../core/interface/userInfo';
+import { Component, OnInit, Output, EventEmitter, Inject } from "@angular/core";
+import { Router } from "@angular/router";
+import { DOCUMENT } from "@angular/common";
+import { AuthenticationService } from "../../core/services/auth.service";
+import { AuthfakeauthenticationService } from "../../core/services/authfake.service";
+import { environment } from "../../../environments/environment";
+import { CookieService } from "ngx-cookie-service";
+import { LanguageService } from "../../core/services/language.service";
+import { TranslateService } from "@ngx-translate/core";
+import { StorageService } from "../../core/services/storage.service";
+import { StorageType } from "../../constants/storage-type";
+import { GlobalService } from "../../core/services/global.service";
+import { IUserInfo } from "../../core/interface/userInfo";
 
 @Component({
-  selector: 'app-topbar',
-  templateUrl: './topbar.component.html',
-  styleUrls: ['./topbar.component.scss']
+  selector: "app-topbar",
+  templateUrl: "./topbar.component.html",
+  styleUrls: ["./topbar.component.scss"],
 })
 
 /**
  * Topbar component
  */
 export class TopbarComponent implements OnInit {
-
   element;
   cookieValue;
   flagvalue;
   countryName;
   valueset;
 
-  constructor(@Inject(DOCUMENT) private document: any, private router: Router, private authService: AuthenticationService,
-              private authFackservice: AuthfakeauthenticationService,
-              public languageService: LanguageService,
-              public translate: TranslateService,
-              public _cookiesService: CookieService,
-              private globalService: GlobalService) {
-  }
-
-  listLang = [
-    { text: 'English', flag: 'assets/images/flags/us.jpg', lang: 'en' },
-    { text: 'Spanish', flag: 'assets/images/flags/spain.jpg', lang: 'es' },
-    { text: 'German', flag: 'assets/images/flags/germany.jpg', lang: 'de' },
-    { text: 'Italian', flag: 'assets/images/flags/italy.jpg', lang: 'it' },
-    { text: 'Russian', flag: 'assets/images/flags/russia.jpg', lang: 'ru' },
-  ];
+  constructor(
+    @Inject(DOCUMENT) private document: any,
+    private router: Router,
+    private authService: AuthenticationService,
+    private authFackservice: AuthfakeauthenticationService,
+    public languageService: LanguageService,
+    public translate: TranslateService,
+    public _cookiesService: CookieService,
+    private globalService: GlobalService
+  ) {}
 
   openMobileMenu: boolean;
 
@@ -51,37 +45,28 @@ export class TopbarComponent implements OnInit {
   @Output() mobileMenuButtonClicked = new EventEmitter();
 
   //
-  userInfo: IUserInfo={
-    'account': 'NA',
-    'email': 'NA',
-    'role': 'NA',
-    'userName': 'NA',
-    'name': 'NA'
-  }
-  badgeType: string= 'success';
+  userInfo: IUserInfo = {
+    account: "NA",
+    email: "NA",
+    role: "NA",
+    userName: "NA",
+    name: "NA",
+  };
+  badgeType: string = "success";
 
   ngOnInit() {
     this.openMobileMenu = false;
     this.element = document.documentElement;
-
-    this.cookieValue = this._cookiesService.get('lang');
-    const val = this.listLang.filter(x => x.lang === this.cookieValue);
-    this.countryName = val.map(element => element.text);
-    if (val.length === 0) {
-      if (this.flagvalue === undefined) { this.valueset = 'assets/images/flags/us.jpg'; }
-    } else {
-      this.flagvalue = val.map(element => element.flag);
-    }
     this.getUserInfo();
   }
 
-    setLanguage(text: string, lang: string, flag: string) {
-          this.getUserInfo();
-      this.countryName = text;
-      this.flagvalue = flag;
-      this.cookieValue = lang;
-      this.languageService.setLanguage(lang);
-    }
+  setLanguage(text: string, lang: string, flag: string) {
+    this.getUserInfo();
+    this.countryName = text;
+    this.flagvalue = flag;
+    this.cookieValue = lang;
+    this.languageService.setLanguage(lang);
+  }
 
   /**
    * Toggles the right sidebar
@@ -102,18 +87,20 @@ export class TopbarComponent implements OnInit {
    * Logout the user
    */
   logout() {
-   this.router.navigate(['/auth/login']);
-   StorageService.remove(StorageType.ACCESS_TOKEN)
+    this.router.navigate(["/auth/login"]);
+    StorageService.remove(StorageType.ACCESS_TOKEN);
   }
 
   /**
    * Fullscreen method
    */
   fullscreen() {
-    document.body.classList.toggle('fullscreen-enable');
+    document.body.classList.toggle("fullscreen-enable");
     if (
-      !document.fullscreenElement && !this.element.mozFullScreenElement &&
-      !this.element.webkitFullscreenElement) {
+      !document.fullscreenElement &&
+      !this.element.mozFullScreenElement &&
+      !this.element.webkitFullscreenElement
+    ) {
       if (this.element.requestFullscreen) {
         this.element.requestFullscreen();
       } else if (this.element.mozRequestFullScreen) {
@@ -142,12 +129,12 @@ export class TopbarComponent implements OnInit {
     }
   }
 
-  getUserInfo(){
-    this.userInfo =   this.globalService.getUserInfo();
-    console.log('userInfo:', this.userInfo)
+  getUserInfo() {
+    this.userInfo = this.globalService.getUserInfo();
+    console.log("userInfo:", this.userInfo);
     const role = this.userInfo.role;
-    if(role === 'Super-Admin'){
-      this.badgeType = 'warning';
+    if (role === "Super-Admin") {
+      this.badgeType = "warning";
     }
   }
 }
