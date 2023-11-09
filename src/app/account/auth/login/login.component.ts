@@ -16,10 +16,8 @@ export class LoginComponent implements OnInit {
   error = "";
   returnUrl: string;
 
-  // set the currenr year
   year: number = new Date().getFullYear();
 
-  // tslint:disable-next-line: max-line-length
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -34,22 +32,16 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  // convenience getter for easy access to form fields
   get f() {
     return this.loginForm.controls;
   }
 
-  /**
-   * Form submit
-   */
   onSubmit() {
     this.submitted = true;
 
-    // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
     } else {
-      // login function call
       this.loginService.login(this.loginForm).then((res) => {
         console.log(res);
         if (this.globalService.handleSuccessService(res)) {
