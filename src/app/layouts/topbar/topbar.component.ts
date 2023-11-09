@@ -17,10 +17,6 @@ import { IUserInfo } from "../../core/interface/userInfo";
   templateUrl: "./topbar.component.html",
   styleUrls: ["./topbar.component.scss"],
 })
-
-/**
- * Topbar component
- */
 export class TopbarComponent implements OnInit {
   element;
   cookieValue;
@@ -31,8 +27,6 @@ export class TopbarComponent implements OnInit {
   constructor(
     @Inject(DOCUMENT) private document: any,
     private router: Router,
-    private authService: AuthenticationService,
-    private authFackservice: AuthfakeauthenticationService,
     public languageService: LanguageService,
     public translate: TranslateService,
     public _cookiesService: CookieService,
@@ -68,32 +62,20 @@ export class TopbarComponent implements OnInit {
     this.languageService.setLanguage(lang);
   }
 
-  /**
-   * Toggles the right sidebar
-   */
   toggleRightSidebar() {
     this.settingsButtonClicked.emit();
   }
 
-  /**
-   * Toggle the menu bar when having mobile screen
-   */
   toggleMobileMenu(event: any) {
     event.preventDefault();
     this.mobileMenuButtonClicked.emit();
   }
 
-  /**
-   * Logout the user
-   */
   logout() {
     this.router.navigate(["/auth/login"]);
     StorageService.remove(StorageType.ACCESS_TOKEN);
   }
 
-  /**
-   * Fullscreen method
-   */
   fullscreen() {
     document.body.classList.toggle("fullscreen-enable");
     if (
@@ -104,26 +86,20 @@ export class TopbarComponent implements OnInit {
       if (this.element.requestFullscreen) {
         this.element.requestFullscreen();
       } else if (this.element.mozRequestFullScreen) {
-        /* Firefox */
         this.element.mozRequestFullScreen();
       } else if (this.element.webkitRequestFullscreen) {
-        /* Chrome, Safari and Opera */
         this.element.webkitRequestFullscreen();
       } else if (this.element.msRequestFullscreen) {
-        /* IE/Edge */
         this.element.msRequestFullscreen();
       }
     } else {
       if (this.document.exitFullscreen) {
         this.document.exitFullscreen();
       } else if (this.document.mozCancelFullScreen) {
-        /* Firefox */
         this.document.mozCancelFullScreen();
       } else if (this.document.webkitExitFullscreen) {
-        /* Chrome, Safari and Opera */
         this.document.webkitExitFullscreen();
       } else if (this.document.msExitFullscreen) {
-        /* IE/Edge */
         this.document.msExitFullscreen();
       }
     }

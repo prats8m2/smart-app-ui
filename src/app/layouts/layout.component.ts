@@ -27,7 +27,6 @@ export class LayoutComponent implements OnInit, AfterViewInit {
   constructor(private eventService: EventService) {}
 
   ngOnInit() {
-    // default settings
     this.layoutType = LAYOUT_VERTICAL;
     this.layoutwidth = LAYOUT_WIDTH;
     this.topbar = TOPBAR;
@@ -36,7 +35,6 @@ export class LayoutComponent implements OnInit, AfterViewInit {
 
     document.body.setAttribute("data-bs-theme", this.mode);
 
-    // listen to event and change the layout, theme, etc
     this.eventService.subscribe("changeLayout", (layout) => {
       this.layoutType = layout;
     });
@@ -48,13 +46,11 @@ export class LayoutComponent implements OnInit, AfterViewInit {
       this.LayoutWidth(this.layoutwidth);
     });
 
-    // listen to event and change the layout, theme, etc
     this.eventService.subscribe("changeSidebartype", (layout) => {
       this.sidebartype = layout;
       this.changeSidebar(this.sidebartype);
     });
 
-    // Change Mode
     this.eventService.subscribe("changeMode", (mode) => {
       this.mode = mode;
       this.changeMode(this.mode);
@@ -64,7 +60,6 @@ export class LayoutComponent implements OnInit, AfterViewInit {
     this.changeMode(this.mode);
   }
 
-  // Theme Drk Light Mode
   changeMode(value) {
     switch (value) {
       case "light":
@@ -162,16 +157,10 @@ export class LayoutComponent implements OnInit, AfterViewInit {
     }
   }
 
-  /**
-   * Check if the vertical layout is requested
-   */
   isVerticalLayoutRequested() {
     return this.layoutType === LAYOUT_VERTICAL;
   }
 
-  /**
-   * Check if the horizontal layout is requested
-   */
   isHorizontalLayoutRequested() {
     return this.layoutType === LAYOUT_HORIZONTAL;
   }
