@@ -1,51 +1,75 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MustMatch } from '../../form/validation/validation.mustmatch';
-import { ActivatedRoute } from '@angular/router';
-import { EventService } from 'src/app/core/services/event.service';
-import { UserService } from '../../dashboards/service/user/user.service';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute } from "@angular/router";
+import { AccountService } from "../../accounts/service/account.service";
 
 @Component({
-  selector: 'app-add-role',
-  templateUrl: './add-role.component.html',
-  styleUrls: ['./add-role.component.scss'],
+  selector: "app-add-role",
+  templateUrl: "./add-role.component.html",
+  styleUrls: ["./add-role.component.scss"],
 })
 export class AddRoleComponent implements OnInit {
   submit: boolean;
   isEditScreen: boolean = false;
 
-  public roleForm: FormGroup = this.formBuilder.group({
-    id: [''],
-    roleName: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]+')]],
-  });
+  public roleForm: FormGroup;
+
+  headings: string[] = [
+    "Staff",
+    "Device",
+    "Room",
+    "Table",
+    "Category",
+    "Product",
+    "Menu",
+    "Order",
+  ];
+  permissions: string[] = ["ADD", "UPDATE", "DELETE", "VIEW", "LIST"];
 
   constructor(
     public formBuilder: FormBuilder,
-    public userService: UserService,
+    public userService: AccountService,
     private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe(params => {
+    this.roleForm = this.formBuilder.group({
+      id: [""],
+      roleName: ["", [Validators.required, Validators.pattern("[a-zA-Z0-9]+")]],
+      permissions: this.formBuilder.group({}),
+    });
+
+    this.headings.forEach((heading) => {
+      const headingGroup = {};
+      this.permissions.forEach((permission) => {
+        headingGroup[permission] = this.formBuilder.control(false); // Initialize the nested controls
+      });
+      (this.roleForm.get("permissions") as FormGroup).addControl(
+        heading,
+        this.formBuilder.group(headingGroup)
+      );
+    });
+
+    this.activatedRoute.queryParams.subscribe((params) => {
       if (params.edit) {
         this.isEditScreen = true;
-        let userId = params['id'];
+        let userId = params["id"];
         this.roleForm.value.id = userId;
       } else {
         this.roleForm.reset();
       }
     });
 
-    const attribute = document.body.getAttribute('data-layout');
+    const attribute = document.body.getAttribute("data-layout");
 
-    const vertical = document.getElementById('layout-vertical');
+    const vertical = document.getElementById("layout-vertical");
     if (vertical != null) {
-      vertical.setAttribute('checked', 'true');
+      vertical.setAttribute("checked", "true");
     }
-    if (attribute == 'horizontal') {
-      const horizontal = document.getElementById('layout-horizontal');
+    if (attribute == "horizontal") {
+      const horizontal = document.getElementById("layout-horizontal");
       if (horizontal != null) {
-        horizontal.setAttribute('checked', 'true');
+        horizontal.setAttribute("checked", "true");
       }
     }
     this.submit = false;
@@ -68,5 +92,11 @@ export class AddRoleComponent implements OnInit {
 
   onUpdate() {
     console.log(this.roleForm);
+  }
+
+  submit1() {
+    // Output selected permissions to console or send to API
+    console.log(this.roleForm.value);
+    // You can send the selected permissions to the server or perform other actions here.
   }
 }

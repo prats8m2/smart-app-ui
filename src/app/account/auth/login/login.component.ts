@@ -23,7 +23,9 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private globalService: GlobalService,
     private loginService: LoginService
-  ) {}
+  ) {
+    document.body.setAttribute("data-bs-theme", "dark");
+  }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({

@@ -1,0 +1,20 @@
+.permission-groups {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.permission-group {
+  width: 50%;
+}
+
+.permission-items {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.permission-item {
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+/* Adjust styles as needed for spacing and alignment */

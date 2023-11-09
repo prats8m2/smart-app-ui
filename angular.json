@@ -18,8 +18,24 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "rxjs", "core-js", "chart.js", "chartist","leaflet","sweetalert2","apexcharts","dropzone","file-saver","lodash","detect-passive-events",
-              "ev-emitter/ev-emitter","can-use-dom","lodash.debounce","lodash.memoize","lodash.throttle","metismenujs/dist/metismenujs","sweetalert2",
+              "rxjs",
+              "core-js",
+              "chart.js",
+              "chartist",
+              "leaflet",
+              "sweetalert2",
+              "apexcharts",
+              "dropzone",
+              "file-saver",
+              "lodash",
+              "detect-passive-events",
+              "ev-emitter/ev-emitter",
+              "can-use-dom",
+              "lodash.debounce",
+              "lodash.memoize",
+              "lodash.throttle",
+              "metismenujs/dist/metismenujs",
+              "sweetalert2",
               "@ckeditor/ckeditor5-build-classic"
             ],
             "outputPath": "docs",
@@ -33,7 +49,7 @@
               "src/assets"
             ],
             "styles": [
-            "node_modules/chartist/dist/index.css",
+              "node_modules/chartist/dist/index.css",
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
               "./node_modules/ngx-ui-switch/ui-switch.component.css",

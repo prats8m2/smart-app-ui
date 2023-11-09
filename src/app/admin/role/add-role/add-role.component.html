@@ -1,76 +1,51 @@
-<div class="container-fluid">
-  <!-- start page title -->
-  <div class="row">
-    <div class="col-12">
-      <div
-        class="page-title-box d-flex align-items-center justify-content-between"
-      >
-        <h4 class="mb-0 font-size-18" *ngIf="!isEditScreen">Add New Role</h4>
-        <h4 class="mb-0 font-size-18" *ngIf="isEditScreen">Update Role</h4>
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title mb-4">Add Role</h4>
+
+    <form
+      [formGroup]="roleForm"
+      class="needs-validation"
+      (ngSubmit)="validSubmit()"
+    >
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <label for="formrow-firstname-input">Role name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="formrow-firstname-input"
+            formControlName="roleName"
+          />
+        </div>
       </div>
-    </div>
-  </div>
-  <!-- end page title -->
 
-  <!--Add Role FORM-->
+      <h4 class="mb-2">Permissions</h4>
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-body">
-            <form
-              class="needs-validation"
-              (ngSubmit)="validSubmit()"
-              [formGroup]="roleForm"
+      <div formGroupName="permissions" class="permission-groups">
+        <div *ngFor="let heading of headings" class="permission-group">
+          <h6>{{ heading }}</h6>
+          <div formGroupName="{{ heading }}" class="permission-items">
+            <label
+              *ngFor="let permission of permissions"
+              class="permission-item"
             >
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="roleName">Role Name</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="roleName"
-                      formControlName="roleName"
-                      placeholder="Role name"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div class="d-flex flex-wrap gap-2">
-                <button
-                  type="reset"
-                  class="btn btn-secondary waves-effect"
-                  (click)="onReset()"
-                  [disabled]="roleForm.pristine"
-                >
-                  Reset
-                </button>
-                <button
-                  *ngIf="!isEditScreen"
-                  type="submit"
-                  class="btn btn-primary waves-effect waves-light"
-                  (click)="onSave()"
-                  [disabled]="roleForm.invalid || roleForm.pristine"
-                >
-                  Save
-                </button>
-                <button
-                  *ngIf="isEditScreen"
-                  type="submit"
-                  class="btn btn-primary waves-effect waves-light"
-                  (click)="onUpdate()"
-                  [disabled]="roleForm.invalid || roleForm.pristine"
-                >
-                  Update
-                </button>
-              </div>
-            </form>
+              <input type="checkbox" [formControlName]="permission" />
+              {{ permission }}
+            </label>
           </div>
         </div>
       </div>
-    </div>
+
+      <div>
+        <button
+          type="submit"
+          class="btn btn-primary w-md"
+          [disabled]="roleForm.pristine"
+          (click)="onSave()"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
   </div>
 </div>
