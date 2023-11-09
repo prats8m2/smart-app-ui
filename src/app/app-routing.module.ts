@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-
 import { AuthGuard } from "./core/guards/auth.guard";
 import { LayoutComponent } from "./layouts/layout.component";
 const routes: Routes = [
@@ -16,7 +15,6 @@ const routes: Routes = [
       import("./admin/admin.module").then((m) => m.AdminModule),
     canActivate: [AuthGuard],
   },
-  // tslint:disable-next-line: max-line-length
   {
     path: "pages",
     component: LayoutComponent,

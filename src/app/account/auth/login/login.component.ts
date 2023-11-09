@@ -1,23 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { LoginService } from './services/login.service';
-import { GlobalService } from 'src/app/core/services/global.service';
-import { URL_ROUTES } from 'src/app/constants/routing';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { LoginService } from "./services/login.service";
+import { GlobalService } from "src/app/core/services/global.service";
+import { URL_ROUTES } from "src/app/constants/routing";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"],
 })
-
-/**
- * Login component
- */
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
-  error = '';
+  error = "";
   returnUrl: string;
 
   // set the currenr year
@@ -33,8 +29,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      email: ["", [Validators.required, Validators.email]],
+      password: ["", [Validators.required]],
     });
   }
 
@@ -54,7 +50,7 @@ export class LoginComponent implements OnInit {
       return;
     } else {
       // login function call
-      this.loginService.login(this.loginForm).then(res => {
+      this.loginService.login(this.loginForm).then((res) => {
         console.log(res);
         if (this.globalService.handleSuccessService(res)) {
           this.router.navigate([URL_ROUTES.DASHBOARD]);
