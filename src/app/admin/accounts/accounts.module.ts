@@ -7,7 +7,7 @@ import { AddAccountComponent } from "./add-account/add-account.component";
 import { ViewAccountComponent } from "./view-account/view-account.component";
 import { PaginationModule } from "ngx-bootstrap/pagination";
 import { StatusPipe } from "../../core/pipes/status.pipe";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -21,6 +21,7 @@ import { FormsModule } from "@angular/forms";
     FormsModule,
     CommonModule,
     AccountsRoutingModule,
+    ReactiveFormsModule,
     PaginationModule.forRoot(),
   ],
 })

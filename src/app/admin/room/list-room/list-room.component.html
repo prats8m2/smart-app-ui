@@ -6,13 +6,14 @@
       >
         <h4 class="mb-0 font-size-18">Rooms</h4>
         <div class="page-title-right">
-          <div class="col-md-12 d-flex justify-content-end">
-            <input
+          <div class="text-sm-end">
+            <button
               type="button"
-              class="btn btn-success mt-3 mt-lg-0 ml-auto"
-              value="Add Room"
+              class="btn btn-primary btn-rounded mb-2 me-2"
               (click)="routeToAddRoom()"
-            />
+            >
+              <i class="mdi mdi-plus mr-1"></i> Add Room
+            </button>
           </div>
         </div>
       </div>
@@ -94,10 +95,10 @@
                     <td>
                       {{
                         room.occupied == 0
-                          ? 'No'
+                          ? "No"
                           : room.occupied == 1
-                          ? 'Yes'
-                          : 'N/A'
+                          ? "Yes"
+                          : "N/A"
                       }}
                     </td>
                     <td>{{ room.device.code }}</td>

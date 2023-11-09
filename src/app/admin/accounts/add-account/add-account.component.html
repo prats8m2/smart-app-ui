@@ -2,7 +2,11 @@
   <div class="card-body">
     <h4 class="card-title mb-4">Add Account</h4>
 
-    <form>
+    <form
+      class="needs-validation"
+      (ngSubmit)="validSubmit()"
+      [formGroup]="accountForm"
+    >
       <div class="row">
         <div class="col-md-6 mb-4">
           <label for="formrow-firstname-input">Account name</label>
