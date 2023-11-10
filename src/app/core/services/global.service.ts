@@ -1,17 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
-import { AbstractControl, FormControl } from '@angular/forms';
+import { StorageService } from "./storage.service";
 
-import { StorageService } from './storage.service';
-
-import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { StorageType } from 'src/app/constants/storage-type';
-import { DecodedTokenI } from '../interface/decode-token';
-import { IAPIResponse } from '../interface/api-response';
-import { URL_ROUTES } from 'src/app/constants/routing';
+import { Router } from "@angular/router";
+import { BehaviorSubject } from "rxjs";
+import { StorageType } from "src/app/constants/storage-type";
+import { DecodedTokenI } from "../interface/decode-token";
+import { IAPIResponse } from "../interface/api-response";
+import { URL_ROUTES } from "src/app/constants/routing";
+import { ToastrService } from "ngx-toastr";
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class GlobalService {
   accessToken!: string | null;
@@ -20,53 +19,73 @@ export class GlobalService {
   reportUrl!: string;
   public isSidenavOpened: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(false);
-  constructor(private router: Router) {}
-  handleSuccessService(result: IAPIResponse, showToast = true) {
-    if (result.status == true) {
-      console.log('Success API');
+  constructor(private router: Router, private toastr: ToastrService) {}
 
+  handleSuccessService(
+    result: IAPIResponse,
+    showToast = true,
+    showErrorToast = true
+  ) {
+    console.log(result);
+    if (result.status == true) {
+      if (showToast) {
+        this.toastr.success(result.message, "Success", {
+          timeOut: 3000,
+          closeButton: true,
+          progressBar: true,
+          positionClass: "toast-top-right",
+        });
+      }
       return true;
+    }
+    if (result.status === false) {
+      if (showErrorToast)
+        this.toastr.error(result.message, "Error", {
+          timeOut: 3000,
+          positionClass: "toast-top-right",
+        });
+      return false;
     }
   }
 
   getDecodeToken() {
     const accessToken = StorageService.get(StorageType.ACCESS_TOKEN);
-    if (accessToken) return JSON.parse(atob(accessToken.split('.')[1]));
-    else this.router.navigateByUrl('');
+    if (accessToken) return JSON.parse(atob(accessToken.split(".")[1]));
+    else this.router.navigateByUrl("");
   }
 
   getUserRole(value: string) {
     const accessToken = StorageService.get(StorageType.ACCESS_TOKEN);
     let decodeToken;
     if (accessToken) {
-      decodeToken = JSON.parse(atob(accessToken.split('.')[1]));
+      decodeToken = JSON.parse(atob(accessToken.split(".")[1]));
     } else {
-      this.router.navigateByUrl('');
+      this.router.navigateByUrl("");
     }
     let userRole = decodeToken.role.name.toLowerCase();
     let permissions = decodeToken.role.permissions;
     let account = decodeToken.account;
 
-    if (userRole != 'super-admin' && userRole != 'client-admin') {
-      userRole = 'user';
+    if (userRole != "super-admin" && userRole != "client-admin") {
+      userRole = "user";
     }
     switch (value) {
-      case 'decodeToken':
+      case "decodeToken":
         return decodeToken;
-      case 'userRole':
+      case "userRole":
         return userRole;
-      case 'permissions':
+      case "permissions":
         return permissions;
-      case 'account':
+      case "account":
         return account;
     }
   }
 
   checkForPermissionAndRoute(permission: any, routerLink: string) {
-    let userPermission = this.getUserRole('permissions');
+    let userPermission = this.getUserRole("permissions");
     let permissionName = userPermission.map((per: any) => per.name);
     if (permissionName.includes(permission)) {
-      console.log('PERMISSION GRANTED');
+      console.log("PERMISSION GRANTED");
       this.router.navigateByUrl(routerLink);
 
       return true;
@@ -77,10 +96,10 @@ export class GlobalService {
   }
 
   checkForPermission(permission: any) {
-    let userPermission = this.getUserRole('permissions');
+    let userPermission = this.getUserRole("permissions");
     let permissionName = userPermission.map((per: any) => per.name);
     if (permissionName.includes(permission)) {
-      console.log('true');
+      console.log("true");
       return true;
     } else {
       return false;
@@ -89,11 +108,11 @@ export class GlobalService {
 
   getUserInfo() {
     const accessToken = StorageService.get(StorageType.ACCESS_TOKEN);
-    let decodeToken : DecodedTokenI;
+    let decodeToken: DecodedTokenI;
     if (accessToken) {
-      decodeToken = JSON.parse(atob(accessToken.split('.')[1]));
+      decodeToken = JSON.parse(atob(accessToken.split(".")[1]));
     } else {
-      this.router.navigateByUrl('');
+      this.router.navigateByUrl("");
     }
     let role = decodeToken.role.name;
     let userName = decodeToken.username;
@@ -101,6 +120,6 @@ export class GlobalService {
     let account = decodeToken?.account?.name;
     let email = decodeToken.email;
 
-    return {role,userName,name,account,email}
+    return { role, userName, name, account, email };
   }
 }

@@ -1,14 +1,14 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { LOGIN } from 'src/app/constants/api';
-import { StorageType } from 'src/app/constants/storage-type';
-import { GlobalService } from 'src/app/core/services/global.service';
-import { StorageService } from 'src/app/core/services/storage.service';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { FormGroup } from "@angular/forms";
+import { Router } from "@angular/router";
+import { LOGIN } from "src/app/constants/api";
+import { StorageType } from "src/app/constants/storage-type";
+import { GlobalService } from "src/app/core/services/global.service";
+import { StorageService } from "src/app/core/services/storage.service";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class LoginService {
   constructor(
@@ -25,12 +25,12 @@ export class LoginService {
         password: password,
       })
       .toPromise()
-      .then(response => {
+      .then((response) => {
         const result = JSON.parse(JSON.stringify(response));
         if (result.status) {
           const accessToken: string = result.data.token;
           this.globalService.decodeToken = JSON.parse(
-            atob(accessToken.split('.')[1])
+            atob(accessToken.split(".")[1])
           );
           this.setAccessToken(result.data.token);
         }
